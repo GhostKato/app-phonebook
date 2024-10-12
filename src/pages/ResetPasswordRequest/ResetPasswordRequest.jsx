@@ -19,11 +19,11 @@ const ResetPasswordRequest = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Не вдалося надіслати лист для скидання пароля');
+        throw new Error('Unable to send a password reset email');
       }
 
       const data = await response.json();
-      setMessage(data.message || 'Лист надіслано успішно!');
+      setMessage(data.message || 'Letter sent successfully!');
 
       const token = data.token;
       if (token) {

@@ -23,11 +23,11 @@ const ResetPasswordPage = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Не вдалося скинути пароль');
+        throw new Error('Could not reset password');
       }
 
       const data = await response.json();
-      setMessage(data.message || 'Пароль успішно скинуто!');
+      setMessage(data.message || 'Password successfully reset!');
     } catch (error) {
       setMessage(error.message);
     }
