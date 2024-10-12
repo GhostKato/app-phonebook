@@ -35,17 +35,17 @@ const ResetPasswordPage = () => {
 
   return (
     <div className={s.container}>
-      <h1 className={s.title}>Скидання пароля</h1>
+      <h1 className={s.title}>Reset your password</h1>
       {token ? (
         <form className={s.form} onSubmit={handleSubmit}>
           <label className={s.label}>
-            <span className={s.span}>Новий пароль:</span>
-            <input type="password" name="newPassword" required />
+            <span className={s.span}>New password:</span>
+            <input className={s.input} type="password" name="newPassword" required />
             </label>
-          <button className={s.button} type="submit">Скинути пароль</button>
+          <button className={s.button} type="submit">Send</button>
         </form>
       ) : (
-        <p className={s.message}>Токен не надано.</p>
+        <p className={s.message}>Token not given.</p>
       )}
       {message && <p className={s.message}>{message}</p>}
     </div>
