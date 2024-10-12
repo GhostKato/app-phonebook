@@ -5,7 +5,6 @@ const ResetPasswordPage = () => {
   const location = useLocation();
   const [message, setMessage] = useState('');
 
-  // Отримуємо токен з URL
   const params = new URLSearchParams(location.search);
   const token = params.get('token');
 
@@ -14,7 +13,7 @@ const ResetPasswordPage = () => {
     const newPassword = e.target.newPassword.value;
 
     try {
-      const response = await fetch('http://localhost:3000/reset-pwd', {
+      const response = await fetch('http://localhost:4000/reset-pwd', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +44,7 @@ const ResetPasswordPage = () => {
       ) : (
         <p>Токен не надано.</p>
       )}
-      {message && <p>{message}</p>} {/* Відображаємо повідомлення про статус */}
+      {message && <p>{message}</p>}
     </div>
   );
 }

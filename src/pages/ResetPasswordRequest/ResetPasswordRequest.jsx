@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ResetPasswordRequest = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/send-reset-email', {
+      const response = await fetch('http://localhost:3000/auth/send-reset-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,6 +23,12 @@ const ResetPasswordRequest = () => {
 
       const data = await response.json();
       setMessage(data.message || 'Лист надіслано успішно!');
+
+      const token = data.token;
+      if (token) {
+        navigate(`/auth/reset-password?token=${token}`);
+      }
+
     } catch (error) {
       setMessage(error.message);
     }
