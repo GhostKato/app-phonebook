@@ -9,7 +9,7 @@ const ResetPasswordRequest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/auth/send-reset-email', {
+      const response = await fetch('https://nodejs-hw-mongodb-nls0.onrender.com/auth/send-reset-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

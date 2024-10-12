@@ -13,7 +13,7 @@ const ResetPasswordPage = () => {
     const newPassword = e.target.newPassword.value;
 
     try {
-      const response = await fetch('http://localhost:4000/reset-pwd', {
+      const response = await fetch('https://nodejs-hw-mongodb-nls0.onrender.com//reset-pwd', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
