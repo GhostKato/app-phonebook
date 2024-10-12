@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import s from './ResetPasswordPage.module.css'
 
 const ResetPasswordPage = () => {
   const location = useLocation();
@@ -33,18 +34,20 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div>
-      <h1>Скидання пароля</h1>
+    <div className={s.container}>
+      <h1 className={s.title}>Скидання пароля</h1>
       {token ? (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="newPassword">Новий пароль:</label>
-          <input type="password" id="newPassword" name="newPassword" required />
-          <button type="submit">Скинути пароль</button>
+        <form className={s.form} onSubmit={handleSubmit}>
+          <label className={s.label}>
+            <span className={s.span}>Новий пароль:</span>
+            <input type="password" name="newPassword" required />
+            </label>
+          <button className={s.button} type="submit">Скинути пароль</button>
         </form>
       ) : (
-        <p>Токен не надано.</p>
+        <p className={s.message}>Токен не надано.</p>
       )}
-      {message && <p>{message}</p>}
+      {message && <p className={s.message}>{message}</p>}
     </div>
   );
 }

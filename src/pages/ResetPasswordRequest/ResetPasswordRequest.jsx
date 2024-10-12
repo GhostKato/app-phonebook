@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import s from './ResetPasswordRequest.module.css'
 
 const ResetPasswordRequest = () => {
   const [email, setEmail] = useState('');
@@ -35,20 +36,22 @@ const ResetPasswordRequest = () => {
   };
 
   return (
-    <div>
-      <h1>Запит на скидання пароля</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Введіть вашу електронну пошту:</label>
+    <div className={s.container}>
+      <h1 className={s.title}>Request to reset password</h1>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <label className={s.label}>
+          <span className={s.span}>Enter your e-mail:</span>
         <input
-          type="email"
-          id="email"
+          className={s.input}
+          type="email"          
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-        />
-        <button type="submit">Надіслати лист для скидання пароля</button>
+          />
+          </label>
+        <button className={s.button} type="submit">Send</button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className={s.message}>{message}</p>}
     </div>
   );
 };
