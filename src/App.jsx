@@ -10,7 +10,7 @@ function App() {
     <Suspense fallback={<h1>Завантаження...</h1>}>
       <Routes>
         
-        <Route path='/auth/reset-password' element={<ResetPasswordPage />} />
+        <Route path='/reset-password' element={<ResetPasswordPage />} />
         <Route path='/' element={<ResetPasswordRequest />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
