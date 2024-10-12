@@ -4,7 +4,7 @@ import { useState } from 'react';
 const ResetPasswordPage = () => {
   const location = useLocation();
   const [message, setMessage] = useState('');
-  
+
   // Отримуємо токен з URL
   const params = new URLSearchParams(location.search);
   const token = params.get('token');
@@ -14,13 +14,12 @@ const ResetPasswordPage = () => {
     const newPassword = e.target.newPassword.value;
 
     try {
-      // Запит на скидання пароля
-      const response = await fetch('http://localhost:3000/auth/reset-pwd', {
+      const response = await fetch('http://localhost:3000/reset-pwd', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token, newPassword }),
+        body: JSON.stringify({ token, password: newPassword }),
       });
 
       if (!response.ok) {
@@ -28,7 +27,7 @@ const ResetPasswordPage = () => {
       }
 
       const data = await response.json();
-      setMessage(data.message || 'Пароль успішно скинуто');
+      setMessage(data.message || 'Пароль успішно скинуто!');
     } catch (error) {
       setMessage(error.message);
     }
