@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { sendResetEmail } from '../../redux/auth/operations';
 import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
 import s from './ResetPasswordRequestPage.module.css';
+import { Link } from 'react-router-dom';
 
 const ResetPasswordRequest = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ResetPasswordRequest = () => {
   };
 
   return (
-    <div className={s.container}>
+    <div>
       <h1 className={s.title}>Request to reset password</h1>
       <Formik
         initialValues={{ email: '' }}
@@ -39,12 +40,14 @@ const ResetPasswordRequest = () => {
                 className={s.input}
                 type="email"
                 name="email"
+                placeholder='Enter your email'
               />
               <ErrorMessage name="email" component="div" className={s.error} />
             </label>
-            <button className={s.button} type="submit" disabled={isSubmitting || loading}>
+            <button className={s.btn} type="submit" disabled={isSubmitting || loading}>
               {loading ? 'Sending...' : 'Send'}
             </button>
+            <p>Go to <Link className={s.link} to='/'>Home</Link></p>
           </Form>
         )}
       </Formik>

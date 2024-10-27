@@ -12,6 +12,10 @@
   flex-direction: column;
 }
 
+.span {
+  text-shadow: var(--text-shadow);
+}
+
 .input {
   height: 40px;
   border-radius: 5px;
@@ -55,8 +59,4 @@
   &:hover {
     color: #14c57c;
   }
-}
-
-.title {
-  color: var(--color-green);
 }
