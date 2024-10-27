@@ -1,35 +1,25 @@
-import { useLocation } from 'react-router-dom';
+// src/pages/ResetPasswordPage/ResetPasswordPage.jsx
+
 import { useState } from 'react';
-import s from './ResetPasswordPage.module.css'
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetPassword } from '../../redux/auth/operations';
+import { clearMessage } from '../../redux/auth/slice';
+import s from './ResetPasswordPage.module.css';
 
 const ResetPasswordPage = () => {
   const location = useLocation();
-  const [message, setMessage] = useState('');
+  const dispatch = useDispatch();
+  const { message, error, loading } = useSelector((state) => state.auth);
 
-  const params = new URLSearchParams(location.search);
-  const token = params.get('token');
+  const [newPassword, setNewPassword] = useState('');
+
+  const token = new URLSearchParams(location.search).get('token');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPassword = e.target.newPassword.value;
-
-    try {
-      const response = await fetch('https://nodejs-hw-mongodb-nls0.onrender.com/auth/reset-pwd', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token, password: newPassword }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Could not reset password');
-      }
-
-      const data = await response.json();
-      setMessage(data.message || 'Password successfully reset!');
-    } catch (error) {
-      setMessage(error.message);
+    if (token) {
+      dispatch(resetPassword({ token, password: newPassword }));
     }
   };
 
@@ -40,16 +30,25 @@ const ResetPasswordPage = () => {
         <form className={s.form} onSubmit={handleSubmit}>
           <label className={s.label}>
             <span className={s.span}>New password:</span>
-            <input className={s.input} type="password" name="newPassword" required />
-            </label>
-          <button className={s.button} type="submit">Send</button>
+            <input
+              className={s.input}
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button className={s.button} type="submit" disabled={loading}>
+            {loading ? 'Processing...' : 'Send'}
+          </button>
         </form>
       ) : (
         <p className={s.message}>Token not given.</p>
       )}
       {message && <p className={s.message}>{message}</p>}
+      {error && <p className={s.error}>{error}</p>}
     </div>
   );
-}
+};
 
 export default ResetPasswordPage;
