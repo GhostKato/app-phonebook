@@ -1,4 +1,4 @@
-import './App.css';
+import s from './App.module.css';
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
@@ -13,16 +13,18 @@ const ResetPasswordPage = lazy(() => import('../../pages/ResetPasswordPage/Reset
 function App() { 
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
-      <Header/>
-      <Routes>         
-        <Route path='/' element={<HomePage />} />
-        <Route path='/register' element={<RegistrationPage />} />
-        <Route path='/login' element={<LoginPage />} />            
-        <Route path='/reset-password' element={<ResetPasswordPage />} />
-        <Route path='/request-reset' element={<ResetPasswordRequestPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-      <Footer/>
+      <div className={s.container}>
+        <Header/>
+        <Routes>         
+          <Route path='/' element={<HomePage />} />
+          <Route path='/register' element={<RegistrationPage />} />
+          <Route path='/login' element={<LoginPage />} />            
+          <Route path='/reset-password' element={<ResetPasswordPage />} />
+          <Route path='/request-reset' element={<ResetPasswordRequestPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+        <Footer/>
+      </div>
     </Suspense>      
   );
 }
