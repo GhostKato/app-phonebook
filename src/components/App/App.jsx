@@ -8,12 +8,11 @@ import HomePage from '../../pages/HomePage/HomePage';
 import Footer from '../Footer/Footer';
 import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
-import Loading from '../loading/Loading';
 const ResetPasswordPage = lazy(() => import('../../pages/ResetPasswordPage/ResetPasswordPage'));
 
 function App() { 
   return (
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={<h1>Loading...</h1>}>
       <Header/>
       <Routes>         
         <Route path='/' element={<HomePage />} />
