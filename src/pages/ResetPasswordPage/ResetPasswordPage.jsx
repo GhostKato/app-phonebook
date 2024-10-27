@@ -4,13 +4,17 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword } from '../../redux/auth/operations';
+import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
 import { clearMessage } from '../../redux/auth/slice';
 import s from './ResetPasswordPage.module.css';
 
 const ResetPasswordPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { message, error, loading } = useSelector((state) => state.auth);
+
+   const message = useSelector(selectMessage);
+  const error = useSelector(selectError);
+  const loading = useSelector(selectLoading);  
 
   const [newPassword, setNewPassword] = useState('');
 

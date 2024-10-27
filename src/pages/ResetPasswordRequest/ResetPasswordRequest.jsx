@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendResetEmail } from '../../redux/auth/operations';
+import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
 import { clearMessage } from '../../redux/auth/slice';
 import s from './ResetPasswordRequest.module.css';
 
 const ResetPasswordRequest = () => {
   const dispatch = useDispatch();
-  const { message, error, loading } = useSelector((state) => state.auth);
+  
+   const message = useSelector(selectMessage);
+  const error = useSelector(selectError);
+  const loading = useSelector(selectLoading);
 
   const [email, setEmail] = useState('');
 
