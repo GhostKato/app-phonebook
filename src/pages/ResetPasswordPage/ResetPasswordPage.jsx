@@ -30,7 +30,7 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div className={s.container}>
+    <div>
       <h1 className={s.title}>Reset your password</h1>
       {token ? (
         <Formik
@@ -46,10 +46,11 @@ const ResetPasswordPage = () => {
                   className={s.input}
                   type="password"
                   name="newPassword"
+                  placeholder='Enter your password'
                 />
                 <ErrorMessage name="newPassword" component="div" className={s.error} />
               </label>
-              <button className={s.button} type="submit" disabled={isSubmitting || loading}>
+              <button className={s.btn} type="submit" disabled={isSubmitting || loading}>
                 {loading ? 'Processing...' : 'Send'}
               </button>
             </Form>

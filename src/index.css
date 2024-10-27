@@ -1,0 +1,61 @@
+:root {
+  font-family: "Neuton", serif;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-one: #1e2023;
+  --color-two: #2a2d32;
+  --color-green: #14c57c;
+  --color-white: #f0f0f0;
+  --color-button-hover: #009156;
+  --box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+  --text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background-color: var(--color-one);
+  color: var(--color-white);
+}
+
+/* Reset styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
