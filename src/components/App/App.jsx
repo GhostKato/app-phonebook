@@ -5,10 +5,10 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import ResetPasswordRequestPage from '../../pages/ResetPasswordRequestPage/ResetPasswordRequestPage';
 import Header from '../Header/Header';
 import HomePage from '../../pages/HomePage/HomePage';
-import Loading from '../loading/Loading';
 import Footer from '../Footer/Footer';
 import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
+import Loading from '../loading/Loading';
 const ResetPasswordPage = lazy(() => import('../../pages/ResetPasswordPage/ResetPasswordPage'));
 
 function App() { 
