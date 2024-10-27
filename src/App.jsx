@@ -11,7 +11,7 @@ function App() {
       <Routes>
         
         <Route path='/reset-password' element={<ResetPasswordPage />} />
-        <Route path='/' element={<ResetPasswordRequest />} />
+        <Route path='/request-reset' element={<ResetPasswordRequest />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Suspense>      
