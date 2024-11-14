@@ -1,6 +1,11 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border-radius: 10px;
+  background-color: var(--color-two);
+  box-shadow: var(--box-shadow);
 }

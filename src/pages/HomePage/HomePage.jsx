@@ -2,7 +2,7 @@ import s from './HomePage.module.css'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div className={s.container}><h1 className={s.title}>Welcome to the phonebook.</h1></div>
   )
 }
 

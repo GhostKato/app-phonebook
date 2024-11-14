@@ -1,43 +1,48 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { sendResetEmail, resetPassword } from './operations';
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { register, logIn, logOut, refreshUser } from "./operations";
+
+const initialState = {
+  user: {
+    name: null,
+    email: null,
+  },
+  token: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+};
 
 const authSlice = createSlice({
-  name: 'auth',
-  initialState: { message: '', error: '', loading: false },
-  reducers: {
-    clearMessage: (state) => {
-      state.message = '';
-      state.error = '';
-    },
-  },
+  name: "auth",
+  initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(sendResetEmail.pending, (state) => {
-        state.loading = true;
-        state.error = '';
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;        
       })
-      .addCase(sendResetEmail.fulfilled, (state, action) => {
-        state.loading = false;
-        state.message = action.payload.message || 'Letter sent successfully!';
+      .addCase(logIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;        
       })
-      .addCase(sendResetEmail.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      .addCase(logOut.fulfilled, () => {
+        return initialState;
       })
-      .addCase(resetPassword.pending, (state) => {
-        state.loading = true;
-        state.error = '';
+        .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;        
+        state.isRefreshing = false;
+        
       })
-      .addCase(resetPassword.fulfilled, (state, action) => {
-        state.loading = false;
-        state.message = action.payload.message || 'Password successfully reset!';
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
       })
-      .addCase(resetPassword.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+      .addCase(refreshUser.rejected, (state) => {
+        state.isRefreshing = false;
+      })
+      .addMatcher(isAnyOf(register.fulfilled, logIn.fulfilled, refreshUser.fulfilled), state => {
+      state.isLoggedIn = true;      
+    })
   },
 });
 
-export const { clearMessage } = authSlice.actions;
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

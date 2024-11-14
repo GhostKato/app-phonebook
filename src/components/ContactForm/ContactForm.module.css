@@ -12,6 +12,10 @@
   flex-direction: column;
 }
 
+.span {
+  text-shadow: var(--text-shadow);
+}
+
 .input {
   height: 40px;
   border-radius: 5px;
@@ -48,15 +52,7 @@
   }
 }
 
-.link {
-  margin-left: 5px;
-  transition: color 0.3s ease;
-  color: rgb(131, 131, 196);
-  &:hover {
-    color: #14c57c;
-  }
-}
-
-.title {
-  color: var(--color-green);
+.error {
+  color: red;
+  font-size: 15px;
 }

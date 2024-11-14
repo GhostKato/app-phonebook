@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  &:hover {
+    transform: scale(102%);
+  }
+  &:hover .name {
+    color: var(--color-button-hover);
+  }
+  &:hover .contact {
+    color: var(--color-button-hover);
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-shadow: var(--text-shadow);
+  transition: color 0.3s ease;
+}
+
+.containerItem {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.name {
+  text-shadow: var(--text-shadow);
+  transition: color 0.3s ease;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  transition: background-color 0.3s ease;
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-button-hover);
+    box-shadow: var(--box-shadow);
+  }
+}
