@@ -12,6 +12,8 @@ import { refreshUser } from '../../redux/auth/operations';
 import { PrivateRoute } from '../../Routes/PrivateRoute';
 import { PublicRoute } from '../../Routes/PublicRoute';
 import { selectIsRefreshing } from '../../redux/auth/selectors';
+import ResetPasswordPage from '../../pages/ResetPasswordPage/ResetPasswordPage';
+import ResetPasswordRequestPage from '../../pages/ResetPasswordRequestPage/ResetPasswordRequestPage';
 
 
 function App() {  
@@ -41,6 +43,8 @@ function App() {
             <PrivateRoute>
               <ContactsPage />
             </PrivateRoute>} />
+          <Route path='/reset-password' element={<ResetPasswordPage />} />
+          <Route path='/request-reset' element={<ResetPasswordRequestPage />} />
           <Route path='*' element={<NotFoundPage/>}/>
         </Route>
       </Routes>
