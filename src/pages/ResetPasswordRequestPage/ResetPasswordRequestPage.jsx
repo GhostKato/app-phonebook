@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import { sendResetEmail } from '../../redux/auth/operations';
-// import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
+import { sendResetEmail } from '../../redux/auth/operations';
+import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
 import s from './ResetPasswordRequestPage.module.css';
 import { Link } from 'react-router-dom';
 

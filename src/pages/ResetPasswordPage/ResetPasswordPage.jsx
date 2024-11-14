@@ -2,8 +2,8 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import { resetPassword } from '../../redux/auth/operations';
-// import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
+import { resetPassword } from '../../redux/auth/operations';
+import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
 import s from './ResetPasswordPage.module.css';
 
 const ResetPasswordPage = () => {

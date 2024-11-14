@@ -52,3 +52,27 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const sendResetEmail = createAsyncThunk(
+  'auth/sendResetEmail',
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await contactsApi.post('/auth/send-reset-email', { email });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || 'Unable to send a password reset email');
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ token, password }, { rejectWithValue }) => {
+    try {
+      const response = await contactsApi.post('/auth/reset-pwd', { token, password });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || 'Could not reset password');
+    }
+  }
+);
