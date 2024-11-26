@@ -2,17 +2,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { contactsApi, setToken, clearToken } from "../../config/contactsApi";
 
 export const register = createAsyncThunk(
-    'auth/register',
-    async (credentials, thunkApi) => {
-        try {
-            const { data } = await contactsApi.post('/auth/register', credentials);
-            setToken(data.data.accessToken);
-            return data;
-        } catch (err) {
-            return thunkApi.rejectWithValue(err.message);
-        }
+  'auth/register',
+  async (credentials, thunkApi) => {
+    try {
+            
+      await contactsApi.post('/auth/register', credentials);     
+      
+      const { email, password } = credentials;
+      
+      const loginResponse = await contactsApi.post('/auth/login', { email, password });
+      setToken(loginResponse.data.data.accessToken);      
+      return loginResponse.data.data;      
+      } catch (err) {
+      return thunkApi.rejectWithValue(err.message);
     }
+  }
 );
+
 
 export const logIn = createAsyncThunk(
   'auth/login',
@@ -20,7 +26,7 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await contactsApi.post('auth/login', credentials);
       setToken(data.data.accessToken);      
-      return data;      
+      return data.data;
     } catch (err) {      
       return thunkAPI.rejectWithValue(err.message);
     }
@@ -29,7 +35,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await contactsApi.post('users/logout');
+    await contactsApi.post('auth/logout');
     clearToken();
   } catch (err) {
     return thunkAPI.rejectWithValue(err.message);
@@ -39,13 +45,13 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const savedToken = thunkAPI.getState().auth.token;
+    const savedToken = thunkAPI.getState().auth.token;    
     if (savedToken === null) {
       return thunkAPI.rejectWithValue('Token is not exist!');
     }    
     try {
       setToken(savedToken);
-      const { data } = await contactsApi.get('auth/refresh');      
+      const { data } = await contactsApi.post('auth/refresh');      
       return data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
