@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const contactsApi = axios.create({
-  baseURL: "https://connections-api.goit.global/",
+  baseURL: "https://server-phonebook.onrender.com",
 });
 
 export const setToken = (token) => {

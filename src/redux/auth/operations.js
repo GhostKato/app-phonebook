@@ -5,8 +5,8 @@ export const register = createAsyncThunk(
     'auth/register',
     async (credentials, thunkApi) => {
         try {
-            const { data } = await contactsApi.post('/users/signup', credentials);
-            setToken(data.token);
+            const { data } = await contactsApi.post('/auth/register', credentials);
+            setToken(data.data.accessToken);
             return data;
         } catch (err) {
             return thunkApi.rejectWithValue(err.message);
@@ -18,10 +18,10 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await contactsApi.post('users/login', credentials);
-      setToken(data.token);
-      return data;
-    } catch (err) {
+      const { data } = await contactsApi.post('auth/login', credentials);
+      setToken(data.data.accessToken);      
+      return data;      
+    } catch (err) {      
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -45,7 +45,7 @@ export const refreshUser = createAsyncThunk(
     }    
     try {
       setToken(savedToken);
-      const { data } = await contactsApi.get('users/current');
+      const { data } = await contactsApi.get('auth/refresh');      
       return data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
