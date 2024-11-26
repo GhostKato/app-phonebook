@@ -9,3 +9,23 @@
   color: var(--color-green);
   text-shadow: var(--text-shadow);
 }
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 15px;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  transition: background-color 0.3s ease;
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-button-hover);
+    box-shadow: none;
+  }
+}

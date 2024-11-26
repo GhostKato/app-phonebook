@@ -15,6 +15,9 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+const persistedState = JSON.parse(localStorage.getItem('persist:root'));
+console.log(persistedState.auth);
+
 const persistConfig = {
   key: "root",
   version: 1,

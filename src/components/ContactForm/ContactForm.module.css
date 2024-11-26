@@ -56,3 +56,12 @@
   color: red;
   font-size: 15px;
 }
+
+.radioCont {
+  display: flex;
+  gap: 10px;
+}
+
+.radioBtn:checked {
+  accent-color: #4caf50;
+}
