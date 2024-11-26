@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.span {
+  text-shadow: var(--text-shadow);
+}
+
+.input {
+  height: 40px;
+  border-radius: 8px;
+  padding-left: 10px;
+  border: none;
+  background-color: var(--color-one);
+  color: var(--color-white);
+  transition: outline 0.3s ease;
+  box-shadow: inset var(--box-shadow);
+  &:focus,
+  &:hover {
+    outline: 2px solid var(--color-button-hover);
+  }
+}

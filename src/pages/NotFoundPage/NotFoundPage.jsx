@@ -1,8 +1,8 @@
-import s from './NotFoundPage.module.css'
+import s from './NotFound.module.css'
 
 const NotFoundPage = () => {
   return (
-    <div>NotFoundPage</div>
+    <div>NotFound</div>
   )
 }
 

@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item {
+  background-color: var(--color-one);
+  border-radius: 10px;
+  transition: outline 0.3s ease;
+  box-shadow: inset var(--box-shadow);
+  &:hover {
+    outline: 2px solid var(--color-button-hover);
+  }
+}

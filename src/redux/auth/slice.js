@@ -1,9 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { sendResetEmail, resetPassword } from './operations';
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { register, logIn, logOut, refreshUser, sendResetEmail, resetPassword } from "./operations";
+
+const initialState = {
+  user: {
+    name: null,
+    email: null,
+  },
+  token: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+  message: '',
+  error: '',
+  loading: false,
+};
 
 const authSlice = createSlice({
-  name: 'auth',
-  initialState: { message: '', error: '', loading: false },
+  name: "auth",
+  initialState,
   reducers: {
     clearMessage: (state) => {
       state.message = '';
@@ -12,6 +25,29 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(register.fulfilled, (state, action) => {        
+        state.token = action.payload.token;        
+      })
+      .addCase(logIn.fulfilled, (state, action) => { 
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;        
+        state.token = action.payload.token;        
+      })
+      .addCase(logOut.fulfilled, () => {
+        return initialState;
+      })
+        .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;        
+        state.isRefreshing = false;
+        
+      })
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.rejected, (state) => {
+        state.isRefreshing = false;
+      })
       .addCase(sendResetEmail.pending, (state) => {
         state.loading = true;
         state.error = '';
@@ -35,9 +71,12 @@ const authSlice = createSlice({
       .addCase(resetPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+      .addMatcher(isAnyOf(logIn.fulfilled, refreshUser.fulfilled), state => {
+      state.isLoggedIn = true;      
+    })
   },
 });
 
 export const { clearMessage } = authSlice.actions;
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

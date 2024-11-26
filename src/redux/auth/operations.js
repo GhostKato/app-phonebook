@@ -1,73 +1,54 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { contactsApi, setToken, clearToken } from "../../config/contactsApi";
 
- let token = "";
-
 export const register = createAsyncThunk(
-  'auth/register',
-  async (credentials, thunkAPI) => {
-    try {
-      const { data } = await contactsApi.post('/auth/register', credentials);          
-      return data;
-    } catch (err) {
-      return thunkAPI(err.response?.data?.message || 'Registration failed');
+    'auth/register',
+    async (credentials, thunkApi) => {
+        try {
+            const { data } = await contactsApi.post('/auth/register', credentials);
+            setToken(data.data.accessToken);
+            return data;
+        } catch (err) {
+            return thunkApi.rejectWithValue(err.message);
+        }
     }
-  }
 );
 
 export const logIn = createAsyncThunk(
-  'auth/logIn',
+  'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await contactsApi.post('/auth/login', {
-          email: credentials.email,
-          password: credentials.password,
-        },
-        
-        { withCredentials: true });
-      
-      token = data.accessToken;
-      setToken(token);
-      return data;
-    } catch (error) {
-      return thunkAPI(error.response?.data?.message || 'Login failed');
+      const { data } = await contactsApi.post('auth/login', credentials);
+      setToken(data.data.accessToken);      
+      return data;      
+    } catch (err) {      
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
 
-export const logOut = createAsyncThunk(
-  'auth/logOut',
-  async (_, thunkAPI) => {
-    try {
-      await contactsApi.post('/auth/logout', null, {
-      withCredentials: true
-      });
-      
-      clearToken();
-     
-    } catch (error) {
-      return thunkAPI(error.response?.data?.message || 'Logout failed');
-    }
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await contactsApi.post('users/logout');
+    clearToken();
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
   }
-);
+});
 
-export const refresh = createAsyncThunk(
+export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
-    }
+    const savedToken = thunkAPI.getState().auth.token;
+    if (savedToken === null) {
+      return thunkAPI.rejectWithValue('Token is not exist!');
+    }    
     try {
-      setToken(persistedToken);
-      const res = await contactsApi.post('/auth/refresh-token', null, {
-        withCredentials: true,
-      });    
-      
-      return res.data;
-    } catch (error) {
-      return thunkAPI(error.response?.data?.message || 'Unable to refresh token');
+      setToken(savedToken);
+      const { data } = await contactsApi.get('auth/refresh');      
+      return data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
@@ -95,5 +76,3 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
-
-
