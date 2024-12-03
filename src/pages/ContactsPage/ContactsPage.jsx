@@ -10,47 +10,53 @@ import ContactList from '../../components/ContactList/ContactList.jsx';
 import useToggle from '../../hooks/visibilityToggle.js';
 
 function ContactsPage() {
-
-   const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
-  const dispatch = useDispatch();  
-  const contacts = useSelector(selectContacts);   
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
   const [isOpen, toggle] = useToggle(false);
-  
+
   const handleKeyDown = (event) => {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
       toggle();
     }
   };
-  
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []); 
 
-   useEffect(() => {
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
     dispatch(fetchContacts());
-   }, [dispatch]);
-  
+  }, [dispatch]);
+
+  const handleAddContactSuccess = () => {
+    dispatch(fetchContacts());
+  };
+
+  const handleDeleteContactSuccess = () => {
+    dispatch(fetchContacts());
+  };
+
   return (
     <div className={s.container}>
       <button className={s.btn} onClick={toggle}>
-        {isOpen ? "Close add bar" : "Add contact"}
+        {isOpen ? 'Close add bar' : 'Add contact'}
       </button>
       {isOpen && (
-        <ContactForm />
-         )}
-       {contacts.length !== 0 && (
-      <SearchBox />
-         )}
-      <ContactList />
-       {isLoading && <h1>Loading...</h1>}
+        <ContactForm onAddContactSuccess={handleAddContactSuccess} />
+      )}
+      {contacts.length !== 0 && <SearchBox />}
+      <ContactList onDeleteContactSuccess={handleDeleteContactSuccess}/>
+      {isLoading && <h1>Loading...</h1>}
       {isError && <h2>Something went wrong!</h2>}
     </div>
   );
 }
 
 export default ContactsPage;
+

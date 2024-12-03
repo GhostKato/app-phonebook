@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { addContacts } from '../../redux/contacts/operations';
 
-const ContactForm = () => {
+const ContactForm = ({ onAddContactSuccess }) => {
   const dispatch = useDispatch(); 
 
   const registerSchema = Yup.object({
@@ -19,30 +19,37 @@ const ContactForm = () => {
       .max(50, 'Number must be less than 50 characters!'),
 
     contactType: Yup.string()
-      .oneOf(['work', 'home', 'personal'], 'Invalid contact type') // валідація типу контакту
+      .oneOf(['work', 'home', 'personal'], 'Invalid contact type')
       .required('This field is required!'),
 
     email: Yup.string()
-      .email('Invalid email format') // Валідація для електронної пошти
-      .max(50, 'Email must be less than 50 characters') // Обмеження по кількості символів
-      .notRequired(), // Не обов'язково
+      .email('Invalid email format')
+      .max(50, 'Email must be less than 50 characters')
+      .notRequired(),
   });
 
   const initialValues = {
     name: '',
     number: '',
-    contactType: 'personal', // Значення за замовчуванням
-    email: '', // поле для електронної пошти
+    contactType: 'personal',
+    email: '',
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     const newContact = {
       name: values.name,
       phoneNumber: values.number,
-      contactType: values.contactType, // додаємо тип контакту
-      email: values.email, // додаємо email
+      contactType: values.contactType,
+      email: values.email,
     };
-    dispatch(addContacts(newContact));
+    try {
+      await dispatch(addContacts(newContact)).unwrap();
+      if (onAddContactSuccess) {
+        onAddContactSuccess();
+      }
+    } catch (error) {
+      console.error('Failed to add contact:', error);
+    }
     actions.resetForm();
   };
 

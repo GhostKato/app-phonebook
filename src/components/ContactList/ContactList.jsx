@@ -3,7 +3,7 @@ import s from './ContactList.module.css';
 import { useSelector } from 'react-redux';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 
-const ContactList = () => {
+const ContactList = ({ onDeleteContactSuccess }) => {
   const filteredContacts = useSelector(selectFilteredContacts);
 
   // Додаткові перевірки, щоб уникнути помилок
@@ -19,8 +19,8 @@ const ContactList = () => {
           <Contact
             id={contact._id}
             name={contact.name}
-            number={contact.phoneNumber
-}
+            number={contact.phoneNumber}
+            onDeleteContactSuccess={onDeleteContactSuccess}
           />
         </li>
       ))}
