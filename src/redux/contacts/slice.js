@@ -14,8 +14,7 @@ const contactsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.items = action.payload.data.data || [];
-        console.log(state.items);
+        state.items = action.payload.data.data || [];        
       })      
       .addCase(deleteContacts.fulfilled, (state, action) => {
         state.items = state.items.filter(contact => contact._id !== action.payload);                

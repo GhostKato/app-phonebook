@@ -48,15 +48,16 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const savedToken = getToken(); 
     
+    
     if (!savedToken) {
       return thunkAPI.rejectWithValue('Token is not exist!');
     }
     
-    try {
-      setToken(savedToken);  
-      const { data } = await contactsApi.post('auth/refresh');
-      
+    try {        
+      const { data } = await contactsApi.post('auth/refresh');      
+      setToken(data.data.accessToken);      
       return data.data;
+      
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
