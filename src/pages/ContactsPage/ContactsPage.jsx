@@ -32,15 +32,7 @@ function ContactsPage() {
 
   useEffect(() => {
     dispatch(fetchContacts());
-  }, [dispatch]);
-
-  const handleAddContactSuccess = () => {
-    dispatch(fetchContacts());
-  };
-
-  const handleDeleteContactSuccess = () => {
-    dispatch(fetchContacts());
-  };
+  }, [dispatch]);  
 
   return (
     <div className={s.container}>
@@ -48,10 +40,10 @@ function ContactsPage() {
         {isOpen ? 'Close add bar' : 'Add contact'}
       </button>
       {isOpen && (
-        <ContactForm onAddContactSuccess={handleAddContactSuccess} />
+        <ContactForm/>
       )}
       {contacts.length !== 0 && <SearchBox />}
-      <ContactList onDeleteContactSuccess={handleDeleteContactSuccess}/>
+      <ContactList/>
       {isLoading && <h1>Loading...</h1>}
       {isError && <h2>Something went wrong!</h2>}
     </div>

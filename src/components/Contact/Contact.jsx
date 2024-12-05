@@ -3,20 +3,9 @@ import { deleteContacts } from '../../redux/contacts/operations';
 import s from './Contact.module.css';
 import { FaUser, FaPhone } from "react-icons/fa6";
 
-const Contact = ({ id, name, number, onDeleteContactSuccess }) => {
+const Contact = ({ id, name, number }) => {
   
-  const dispatch = useDispatch();
-
-  const handleDelete = async () => {
-    try {
-      await dispatch(deleteContacts(id)).unwrap();
-      if (onDeleteContactSuccess) {
-        onDeleteContactSuccess();
-      }
-    } catch (error) {
-      console.error("Failed to delete contact:", error);
-    }
-  };
+  const dispatch = useDispatch();  
 
   return (
     <div className={s.container}>    
@@ -30,7 +19,7 @@ const Contact = ({ id, name, number, onDeleteContactSuccess }) => {
         <p className={s.number}>{number}</p>
         </div>
    </div>
-      <button className={s.btn} onClick={handleDelete}>Delete</button>
+      <button className={s.btn} onClick={() => dispatch(deleteContacts(id))}>Delete</button>
     </div>
   )
 }

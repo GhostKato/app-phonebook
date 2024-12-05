@@ -5,8 +5,7 @@ const initialState = {
   user: {
     name: null,
     email: null,
-  },
-  token: null,
+  },  
   isLoggedIn: false,
   isRefreshing: false,
   message: '',
@@ -25,20 +24,17 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(register.fulfilled, (state, action) => {        
-        state.token = action.payload.accessToken; 
-        state.user.name = action.payload.user.name;            
+      .addCase(register.fulfilled, (state, action) => {       
+       state.user.name = action.payload.user.name;            
       })
-      .addCase(logIn.fulfilled, (state, action) => { 
-        state.token = action.payload.accessToken; 
-        state.user.name = action.payload.user.name;        
+      .addCase(logIn.fulfilled, (state, action) => {
+       state.user.name = action.payload.user.name;        
       })
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
-        .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user.name = action.payload.name;
-        state.user.email = action.payload.email;        
+      .addCase(refreshUser.fulfilled, (state, action) => {        
+        state.user.name = action.payload.user.name;                
         state.isRefreshing = false;
         
       })
@@ -47,6 +43,8 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
+        state.isLoggedIn = false;        
+        state.user = { name: null, email: null };
       })
       .addCase(sendResetEmail.pending, (state) => {
         state.loading = true;

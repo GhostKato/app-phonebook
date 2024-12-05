@@ -5,9 +5,17 @@ export const contactsApi = axios.create({
 });
 
 export const setToken = (token) => {
+  localStorage.setItem('accessToken', token);
   contactsApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+  console.log('Token set:', token);
+  console.log('Authorization header:', contactsApi.defaults.headers.common.Authorization);
 };
 
 export const clearToken = () => {
-  contactsApi.defaults.headers.common.Authorization = ``;
+  localStorage.removeItem('accessToken');
+  contactsApi.defaults.headers.common.Authorization = '';
+};
+
+export const getToken = () => {
+  return localStorage.getItem('accessToken'); 
 };

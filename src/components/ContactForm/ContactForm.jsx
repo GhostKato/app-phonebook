@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { addContacts } from '../../redux/contacts/operations';
 
-const ContactForm = ({ onAddContactSuccess }) => {
+const ContactForm = () => {
   const dispatch = useDispatch(); 
 
   const registerSchema = Yup.object({
@@ -44,9 +44,7 @@ const ContactForm = ({ onAddContactSuccess }) => {
     };
     try {
       await dispatch(addContacts(newContact)).unwrap();
-      if (onAddContactSuccess) {
-        onAddContactSuccess();
-      }
+      
     } catch (error) {
       console.error('Failed to add contact:', error);
     }
