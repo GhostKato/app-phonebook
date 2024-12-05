@@ -1,11 +1,18 @@
 import { Field, Form, Formik } from 'formik'
 import s from './LoginPage.module.css'
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
+
 const LoginPage = () => {
+
+  const navigate = useNavigate();
+
+  const handleResetPassword = () => {
+    navigate('/request-reset');
+  };
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -36,11 +43,12 @@ const LoginPage = () => {
           <label className={s.label}>
             <span>Password</span>
             <Field className={s.input} name='password' type='password' placeholder='Enter your password' />
-          </label>
-          <button className={s.btn} type='submit'>Log In</button>
+          </label>          
+            <button className={s.btn} type='submit'>Log In</button>           
           <p>You don't have account? <Link className={s.link} to='/register'>Sing up!</Link></p>
         </Form>
       </Formik>
+      <button className={s.btn} onClick={handleResetPassword}>Reset password</button>
     </div>
   )
 }

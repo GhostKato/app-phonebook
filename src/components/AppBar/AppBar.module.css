@@ -4,11 +4,13 @@
   box-shadow: inset var(--box-shadow);
   border-radius: 8px;
   padding: 8px;
+  margin-bottom: 10px;
   background-color: var(--color-one);
 }
 
 @media (min-width: 768px) {
   .container {
     padding: 15px;
+    margin-bottom: 15px;
   }
 }

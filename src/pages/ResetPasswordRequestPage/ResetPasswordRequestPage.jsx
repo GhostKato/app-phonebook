@@ -4,9 +4,10 @@ import * as Yup from 'yup';
 import { sendResetEmail } from '../../redux/auth/operations';
 import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
 import s from './ResetPasswordRequestPage.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ResetPasswordRequest = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const message = useSelector(selectMessage);
@@ -19,8 +20,11 @@ const ResetPasswordRequest = () => {
       .required('Email is required'),
   });
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    dispatch(sendResetEmail(values.email));
+   const handleSubmit = async (values, { setSubmitting }) => {
+    const result = await dispatch(sendResetEmail(values.email));
+    if (!result.error) {
+      navigate('/login');
+    }
     setSubmitting(false);
   };
 

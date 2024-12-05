@@ -53,3 +53,11 @@
     box-shadow: var(--box-shadow);
   }
 }
+
+@media (min-width: 768px) {
+  .container {
+    &:hover {
+      transform: scale(101%);
+    }
+  }
+}

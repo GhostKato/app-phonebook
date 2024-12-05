@@ -1,7 +1,7 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .item {
@@ -11,5 +11,11 @@
   box-shadow: inset var(--box-shadow);
   &:hover {
     outline: 2px solid var(--color-button-hover);
+  }
+}
+
+@media (min-width: 768px) {
+  .list {
+    gap: 15px;
   }
 }

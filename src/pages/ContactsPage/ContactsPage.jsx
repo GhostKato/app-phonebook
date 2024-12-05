@@ -17,10 +17,12 @@ function ContactsPage() {
   const [isOpen, toggle] = useToggle(false);
 
   const handleKeyDown = (event) => {
-  if (event.key === 'Escape' && isOpen) {
-    toggle();
-  }
-};
+    if (event.key === 'Escape' && isOpen) {
+      toggle(); // Закриває форму, якщо вона відкрита
+    } else if (event.key === 'a' && !isOpen) {
+      toggle(); // Відкриває форму, якщо вона закрита
+    }
+  };
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -28,22 +30,20 @@ function ContactsPage() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [isOpen]); // Додаємо isOpen до залежностей, щоб функція завжди мала актуальне значення
 
   useEffect(() => {
     dispatch(fetchContacts());
-  }, [dispatch]);  
+  }, [dispatch]);
 
   return (
     <div className={s.container}>
       <button className={s.btn} onClick={toggle}>
         {isOpen ? 'Close add bar' : 'Add contact'}
       </button>
-      {isOpen && (
-        <ContactForm/>
-      )}
+      {isOpen && <ContactForm />}
       {contacts.length !== 0 && <SearchBox />}
-      <ContactList/>
+      <ContactList />
       {isLoading && <h1>Loading...</h1>}
       {isError && <h2>Something went wrong!</h2>}
     </div>
@@ -51,4 +51,5 @@ function ContactsPage() {
 }
 
 export default ContactsPage;
+
 
