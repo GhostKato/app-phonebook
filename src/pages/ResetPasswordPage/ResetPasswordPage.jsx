@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -8,6 +8,7 @@ import s from './ResetPasswordPage.module.css';
 
 const ResetPasswordPage = () => {
   const location = useLocation();
+   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const message = useSelector(selectMessage);
@@ -24,7 +25,12 @@ const ResetPasswordPage = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     if (token) {
-      dispatch(resetPassword({ token, password: values.newPassword }));
+      dispatch(resetPassword({ token, password: values.newPassword }))
+        .then((result) => {
+          if (!result.error) {
+            navigate('/login');
+          }
+        });
     }
     setSubmitting(false);
   };
