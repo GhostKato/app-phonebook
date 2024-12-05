@@ -14,13 +14,14 @@ const contactsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
-         state.items = action.payload.data.data || [];        
+        state.items = action.payload.data.data || [];
+        console.log(state.items);
       })      
       .addCase(deleteContacts.fulfilled, (state, action) => {
-        state.items = state.items.filter(contact => contact.id !== action.payload);
+        state.items = state.items.filter(contact => contact._id !== action.payload);                
       })      
       .addCase(addContacts.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.items.push(action.payload.data);
       })
       .addCase(logOut.fulfilled, () => {
         return initialState;
