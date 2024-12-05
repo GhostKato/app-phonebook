@@ -17,10 +17,10 @@ function ContactsPage() {
   const [isOpen, toggle] = useToggle(false);
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
-      toggle();
-    }
-  };
+  if (event.key === 'Escape' && isOpen) {
+    toggle();
+  }
+};
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
