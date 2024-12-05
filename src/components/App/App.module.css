@@ -1,11 +1,20 @@
 .container {
-  width: 40%;
+  width: 90%;
   margin: 0 auto;
-  padding: 15px;
+  padding: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
   border-radius: 10px;
   background-color: var(--color-two);
   box-shadow: var(--box-shadow);
+  font-size: 15px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 70%;
+    padding: 15px;
+    font-size: 20px;
+  }
 }
