@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { selectIsError, selectIsLoading, selectContacts } from '../../redux/contacts/selectors.js';
 import { fetchContacts } from '../../redux/contacts/operations.js';
-import ContactForm from '../../components/ContactForm/ContactForm.jsx';
+import AddContactForm from '../../components/AddContactForm/AddContactForm.jsx';
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 import ContactList from '../../components/ContactList/ContactList.jsx';
 import useToggle from '../../hooks/visibilityToggle.js';
@@ -41,7 +41,7 @@ function ContactsPage() {
       <button className={s.btn} onClick={toggle}>
         {isOpen ? 'Close add bar' : 'Add contact'}
       </button>
-      {isOpen && <ContactForm />}
+      {isOpen && <AddContactForm />}
       {contacts.length !== 0 && <SearchBox />}
       <ContactList />
       {isLoading && <h1>Loading...</h1>}

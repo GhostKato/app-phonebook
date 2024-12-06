@@ -4,10 +4,32 @@ import s from './Contact.module.css';
 import { FaUser, FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { MdPermContactCalendar } from "react-icons/md";
+import useToggle from '../../hooks/visibilityToggle';
+import { useEffect } from 'react';
+import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 
 const Contact = ({ id, name, number, email, type }) => {
   
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
+  const [isOpen, toggle] = useToggle(false);  
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape' && isOpen) {
+      toggle();
+    } 
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);  
+
+  const handleClose = () => {
+    toggle();    
+  };
 
   return (
     <div className={s.container}>    
@@ -34,9 +56,12 @@ const Contact = ({ id, name, number, email, type }) => {
         </div>
       </div>
       <div className={s.btnCont}>
-        <button className={s.btn} onClick={() => dispatch(updateContact(id))}>Edit</button>
+        <button className={s.btn} onClick={() => toggle()}>Edit</button>
         <button className={s.btn} onClick={() => dispatch(deleteContacts(id))}>Delete</button>
       </div>
+      {isOpen && (
+        <UpdateContactForm contactId={id} onClose={handleClose} />
+      )}
     </div>
   )
 }
