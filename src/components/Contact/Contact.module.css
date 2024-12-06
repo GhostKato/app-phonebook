@@ -53,13 +53,25 @@
   height: 40px;
   border: none;
   border-radius: 10px;
-  background-color: var(--color-green);
   color: var(--color-white);
   transition: background-color 0.3s ease;
   box-shadow: var(--box-shadow);
   &:hover {
-    background-color: var(--color-button-hover);
     box-shadow: var(--box-shadow);
+  }
+}
+
+.btnUpdate {
+  background-color: var(--yellow-button);
+  &:hover {
+    background-color: var(--yellow-button-hover);
+  }
+}
+
+.btnDelete {
+  background-color: var(--red-button);
+  &:hover {
+    background-color: var(--red-button-hover);
   }
 }
 
@@ -76,12 +88,12 @@
 
   .contact {
     flex-direction: row;
-    gap: 75px;
+    gap: 35px;
   }
 }
 
 @media (min-width: 1280px) {
   .contact {
-    gap: 150px;
+    gap: 140px;
   }
 }

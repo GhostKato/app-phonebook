@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteContacts, updateContact } from '../../redux/contacts/operations';
+import { deleteContacts } from '../../redux/contacts/operations';
 import s from './Contact.module.css';
 import { FaUser, FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
@@ -11,7 +11,7 @@ import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 const Contact = ({ id, name, number, email, type }) => {
   
   const dispatch = useDispatch();
-  const [isOpen, toggle] = useToggle(false);  
+  const [isOpen, toggle] = useToggle(false);   
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape' && isOpen) {
@@ -56,8 +56,8 @@ const Contact = ({ id, name, number, email, type }) => {
         </div>
       </div>
       <div className={s.btnCont}>
-        <button className={s.btn} onClick={() => toggle()}>Edit</button>
-        <button className={s.btn} onClick={() => dispatch(deleteContacts(id))}>Delete</button>
+        <button className={`${s.btn} ${s.btnUpdate}`} onClick={() => toggle()}>Update</button>
+        <button className={`${s.btn} ${s.btnDelete}`} onClick={() => dispatch(deleteContacts(id))}>Delete</button>
       </div>
       {isOpen && (
         <UpdateContactForm contactId={id} onClose={handleClose} />

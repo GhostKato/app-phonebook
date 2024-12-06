@@ -9,10 +9,11 @@
 }
 
 .modal {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 325px;
   background-color: var(--color-one);
   padding: 20px;
   overflow-y: auto;
@@ -76,9 +77,29 @@
   }
 }
 
+.btnClose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  z-index: 1000;
+}
+
+.icon {
+  color: var(--red-button);
+  font-size: 25px;
+  &:hover {
+    color: var(--red-button-hover);
+  }
+}
+
 .error {
   color: red;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .radioCont {
@@ -106,5 +127,27 @@
 
   .title {
     font-size: 30px;
+  }
+
+  .modal {
+    width: 600px;
+  }
+
+  .btnClose {
+    right: 2%;
+  }
+
+  .icon {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .btnClose {
+    top: 3%;
+  }
+
+  .icon {
+    font-size: 40px;
   }
 }
