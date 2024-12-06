@@ -1,0 +1,37 @@
+.container {
+  box-shadow: inset var(--box-shadow);
+  border-radius: 8px;
+  padding: 8px;
+  background-color: var(--color-one);
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 10px;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.link {
+  font-size: 10px;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+  &:hover {
+    color: #14c57c;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 15px;
+    margin-top: 15px;
+  }
+  .text {
+    font-size: 20px;
+  }
+
+  .link {
+    font-size: 20px;
+  }
+}
