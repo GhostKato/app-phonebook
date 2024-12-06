@@ -32,7 +32,7 @@ export const updateContact = createAsyncThunk('contacts/updateContact', async ({
       headers: {         
         'Content-Type': 'multipart/form-data',
       },
-    });
+    });    
 
     return data;
   } catch (error) {
