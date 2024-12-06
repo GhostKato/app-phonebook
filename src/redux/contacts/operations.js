@@ -19,9 +19,9 @@ export const addContacts = createAsyncThunk('contacts/addContact', async (body, 
   }
 });
 
-export const updateContact = createAsyncThunk('contacts/updateContact', async (id, thunkAPI) => {
+export const updateContact = createAsyncThunk('contacts/updateContact', async ({ id, body }, thunkAPI) => {
   try {
-    const { data } = await contactsApi.patch(`contacts/${id}`);
+    const { data } = await contactsApi.patch(`contacts/${id}`, body);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

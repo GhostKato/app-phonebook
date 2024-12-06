@@ -1,10 +1,10 @@
-import s from './ContactForm.module.css';
+import s from './AddContactForm.module.css';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { addContacts } from '../../redux/contacts/operations';
 
-const ContactForm = () => {
+const AddContactForm = () => {
   const dispatch = useDispatch(); 
 
   const registerSchema = Yup.object({
@@ -99,4 +99,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default AddContactForm;
