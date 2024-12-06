@@ -6,10 +6,10 @@ import { updateContact } from '../../redux/contacts/operations';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 import { IoClose } from "react-icons/io5";
 
-const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
+const UpdateContactForm = ({contactId, onUpdate, onClose}) => {
     const dispatch = useDispatch();
     
-    const registerSchema = Yup.object({
+    const updateContactSchema = Yup.object({
     name: Yup.string()      
       .min(3, 'Name must be more than 3 characters!')
       .max(50, 'Name must be less than 50 characters!'),
@@ -47,9 +47,9 @@ const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
   };
 
   try {
-    await dispatch(updateContact(changedСontact)).unwrap();
-    if (onUbdate) {
-      onUbdate(changedСontact);
+    await dispatch(updateContact({ id: contactId, body: changedСontact })).unwrap();
+    if (onUpdate) {
+      onUpdate(changedСontact);
     }
     actions.resetForm();
     if (onClose) {
@@ -65,17 +65,17 @@ const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
         <div className={s.modal}>
           <button type="button" onClick={() => onClose()} className={s.btnClose}><IoClose className={s.icon}/></button>
         <h1 className={s.title}>Update a contact</h1>
-      <Formik validationSchema={registerSchema} initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik validationSchema={updateContactSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
           <label className={s.label}>
             <span>Name</span>          
-            <Field className={s.input} name="name" required />
+            <Field className={s.input} name="name" />
             <ErrorMessage name="name" component="span" className={s.error} />
           </label>
   
           <label className={s.label}>
             <span className={s.span}>Number</span>          
-            <Field className={s.input} name="number" required />
+            <Field className={s.input} name="number" />
             <ErrorMessage name="number" component="span" className={s.error} />
           </label>
           

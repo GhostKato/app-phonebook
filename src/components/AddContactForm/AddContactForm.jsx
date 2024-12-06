@@ -7,7 +7,7 @@ import { addContacts } from '../../redux/contacts/operations';
 const AddContactForm = () => {
   const dispatch = useDispatch(); 
 
-  const registerSchema = Yup.object({
+  const addContactSchema = Yup.object({
     name: Yup.string()
       .required('This field is required!')
       .min(3, 'Name must be more than 3 characters!')
@@ -52,7 +52,7 @@ const AddContactForm = () => {
   };
 
   return (
-    <Formik validationSchema={registerSchema} initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik validationSchema={addContactSchema} initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className={s.form}>
         <label className={s.label}>
           <span>Name</span>          
