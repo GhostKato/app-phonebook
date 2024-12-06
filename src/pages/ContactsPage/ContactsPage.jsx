@@ -18,9 +18,9 @@ function ContactsPage() {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape' && isOpen) {
-      toggle(); // Закриває форму, якщо вона відкрита
+      toggle();
     } else if (event.key === 'a' && !isOpen) {
-      toggle(); // Відкриває форму, якщо вона закрита
+      toggle(); 
     }
   };
 
@@ -30,7 +30,7 @@ function ContactsPage() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen]); // Додаємо isOpen до залежностей, щоб функція завжди мала актуальне значення
+  }, [isOpen]);
 
   useEffect(() => {
     dispatch(fetchContacts());
