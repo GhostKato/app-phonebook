@@ -15,6 +15,10 @@
   --color-button-hover: #009156;
   --box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
   --text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  --red-button: #a32424;
+  --red-button-hover: #8d3333;
+  --yellow-button: #bead21;
+  --yellow-button-hover: #968b33;
 }
 
 body {

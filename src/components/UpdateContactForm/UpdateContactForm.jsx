@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { updateContact } from '../../redux/contacts/operations';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
+import { IoClose } from "react-icons/io5";
 
 const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
     }); 
   
   const contact = useSelector((state) =>
-    selectFilteredContacts(state).find((item) => item.id === contactId)
+    selectFilteredContacts(state).find((item) => item._id === contactId)
   );
     
     const initialValues = {
@@ -35,9 +36,9 @@ const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
     number: contact?.phoneNumber || '',
     contactType: contact?.contactType || 'personal',
     email: contact?.email || '',
-  };
+  };  
     
-    const handleSubmit = async (values, actions) => {
+  const handleSubmit = async (values, actions) => {
   const changedСontact = {
     name: values.name,
     phoneNumber: values.number,
@@ -60,8 +61,9 @@ const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
 };
     
     return (
-       <div className={s.background}>
-          <div className={s.modal}>
+      <div className={s.background}>        
+        <div className={s.modal}>
+          <button type="button" onClick={() => onClose()} className={s.btnClose}><IoClose className={s.icon}/></button>
         <h1 className={s.title}>Update a contact</h1>
       <Formik validationSchema={registerSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
@@ -103,7 +105,7 @@ const UpdateContactForm = ({contactId, onUbdate, onClose}) => {
           </label>       
   
           <button type="submit" className={s.btn}>
-            Update contact
+            Update
           </button>
         </Form>
               </Formik>
