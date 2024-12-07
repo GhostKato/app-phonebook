@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import loginUserSchema from '../../validation/loginUserSchema';
 
 
 const LoginPage = () => {
@@ -34,7 +35,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik validationSchema={loginUserSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
           <label className={s.label}>
             <span>Email</span>

@@ -4,6 +4,7 @@ import { Field, Form, Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/operations'
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import registrationUserSchema from '../../validation/registrationUserSchema';
 
 const RegistrationPage = () => {
 
@@ -29,7 +30,7 @@ const RegistrationPage = () => {
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik validationSchema={registrationUserSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
           <label className={s.label}>
             <span>Name</span>
