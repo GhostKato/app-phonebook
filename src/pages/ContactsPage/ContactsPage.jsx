@@ -8,8 +8,11 @@ import AddContactForm from '../../components/AddContactForm/AddContactForm.jsx';
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 import ContactList from '../../components/ContactList/ContactList.jsx';
 import useToggle from '../../hooks/visibilityToggle.js';
+import { selectFilteredContacts } from '../../redux/filters/selectors';
 
 function ContactsPage() {
+
+  
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
   const dispatch = useDispatch();
@@ -36,6 +39,12 @@ function ContactsPage() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  const filteredContacts = useSelector(selectFilteredContacts);
+  
+  if (!filteredContacts || !Array.isArray(filteredContacts)) {    
+    return <p>No contacts available.</p>;
+  }
+
   return (
     <div className={s.container}>
       <button className={s.btn} onClick={toggle}>
@@ -43,7 +52,7 @@ function ContactsPage() {
       </button>
       {isOpen && <AddContactForm />}
       {contacts.length !== 0 && <SearchBox />}
-      <ContactList />
+      <ContactList contacts={filteredContacts} />
       {isLoading && <h1>Loading...</h1>}
       {isError && <h2>Something went wrong!</h2>}
     </div>

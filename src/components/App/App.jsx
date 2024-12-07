@@ -14,6 +14,7 @@ import { PublicRoute } from '../../Routes/PublicRoute';
 import { selectIsRefreshing } from '../../redux/auth/selectors';
 import ResetPasswordPage from '../../pages/ResetPasswordPage/ResetPasswordPage';
 import ResetPasswordRequestPage from '../../pages/ResetPasswordRequestPage/ResetPasswordRequestPage';
+import FavouritePage from '../../pages/FavouritePage/FavouritePage';
 
 
 function App() {  
@@ -42,6 +43,10 @@ function App() {
           <Route path='/contacts' element={
             <PrivateRoute>
               <ContactsPage />
+            </PrivateRoute>} />
+          <Route path='/favourite' element={
+            <PrivateRoute>
+              <FavouritePage />
             </PrivateRoute>} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
           <Route path='/request-reset' element={<ResetPasswordRequestPage />} />

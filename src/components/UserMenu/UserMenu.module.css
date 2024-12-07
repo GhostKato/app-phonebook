@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
+  width: 50px;
   height: 30px;
   border: none;
   border-radius: 10px;
@@ -20,5 +20,11 @@
   &:hover {
     background-color: var(--color-button-hover);
     box-shadow: var(--box-shadow);
+  }
+}
+
+@media (min-width: 768px) {
+  .btn {
+    width: 70px;
   }
 }
