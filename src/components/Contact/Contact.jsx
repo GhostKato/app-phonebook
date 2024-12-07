@@ -7,7 +7,7 @@ import useToggle from '../../hooks/visibilityToggle';
 import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 import ConfirmDeletion from '../ConfirmDeletion/ConfirmDeletion';
 import { useDispatch } from "react-redux";
-import { editFavourite } from "../../redux/contacts/operations";
+import { changeFavourite } from "../../redux/contacts/operations";
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   
@@ -15,9 +15,10 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   const [isOpenDelete, toggleDelete] = useToggle(false);
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Escape' && isOpenUpdate) {
-      toggleUpdate();
-    } 
+    if (event.key === 'Escape') {
+      if (isOpenUpdate) toggleUpdate();
+      if (isOpenDelete) toggleDelete();
+    }
   };
 
   useEffect(() => {
@@ -26,12 +27,12 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpenUpdate]); 
+  }, [isOpenUpdate, isOpenDelete]); 
 
   const dispatch = useDispatch();
   
   const handleFavourite = () => {
-  dispatch(editFavourite({ id, body: { isFavourite: !isFavourite } }));  
+  dispatch(changeFavourite({ id, body: { isFavourite: !isFavourite } }));  
 };
 
   return (
@@ -61,18 +62,18 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
       </ul>   
       
       <button
-        className={`${s.favBtn} ${isFavourite ? s.favActive : ''}`}
+        className={`${s.btnFav} ${isFavourite ? s.btnFavActive : ''}`}
         onClick={handleFavourite}
       >
         <FaHeart className={s.iconFav} />
       </button>
       
-      <button className={`${s.btn} ${s.btnUpdate}`} onClick={() => toggleUpdate()}>
-        <RxUpdate className={s.iconUpDel} />
+      <button className={`${s.btnUpDel} ${s.btnUpdate}`} onClick={() => toggleUpdate()}>
+        <RxUpdate className={`${s.iconUpDel} ${s.iconUpdate}`} />
       </button>
       
-      <button className={`${s.btn} ${s.btnDelete}`} onClick={() => toggleDelete()}>
-        <MdDelete className={s.iconUpDel} />
+      <button className={`${s.btnUpDel} ${s.btnDelete}`} onClick={() => toggleDelete()}>
+        <MdDelete className={`${s.iconUpDel} ${s.iconDelete}`} />
       </button>
       
       {isOpenUpdate && (

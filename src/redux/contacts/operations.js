@@ -63,7 +63,7 @@ export const fetchFavourite = createAsyncThunk('contacts/fetchFavourite', async 
 });
 
 
-export const editFavourite = createAsyncThunk('contacts/editFavourite', async ({ id, body }, thunkAPI) => {
+export const changeFavourite = createAsyncThunk('contacts/changeFavourite', async ({ id, body }, thunkAPI) => {
   try {
     
     const formData = new FormData();

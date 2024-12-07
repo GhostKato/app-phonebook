@@ -45,42 +45,45 @@
   transition: color 0.3s ease;
 }
 
-.btn {
+.btnUpDel {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   border: none;
   border-radius: 10px;
-  color: var(--color-white);
   background-color: transparent;
-  transition: background-color 0.3s ease;
-  &:hover {
-    box-shadow: var(--box-shadow);
-  }
 }
 
 .btnUpdate {
   top: 8px;
   right: 5px;
-  &:hover {
-    background-color: var(--yellow-button-hover);
-  }
 }
 
 .btnDelete {
   top: 40px;
   right: 5px;
-  &:hover {
-    background-color: var(--red-button-hover);
-  }
 }
 
 .iconUpDel {
   font-size: 25px;
+  color: var(--color-white);
+  transition: color 0.3s ease;
 }
 
-.favBtn {
+.iconUpdate {
+  &:hover {
+    color: var(--yellow-button-hover);
+  }
+}
+
+.iconDelete {
+  &:hover {
+    color: var(--red-button-hover);
+  }
+}
+
+.btnFav {
   position: absolute;
   top: 7px;
   left: 5px;
@@ -91,7 +94,7 @@
   background-color: transparent;
 }
 
-.favActive {
+.btnFavActive {
   color: var(--color-green);
 }
 
