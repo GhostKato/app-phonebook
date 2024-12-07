@@ -8,6 +8,7 @@ import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 import ConfirmDeletion from '../ConfirmDeletion/ConfirmDeletion';
 import { useDispatch } from "react-redux";
 import { changeFavourite } from "../../redux/contacts/operations";
+import useResponsiveEmail from '../../hooks/useResponsiveEmail';
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   
@@ -33,7 +34,9 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   
   const handleFavourite = () => {
   dispatch(changeFavourite({ id, body: { isFavourite: !isFavourite } }));  
-};
+  };
+  
+  const responsiveEmail = useResponsiveEmail(email);
 
   return (
     <div className={s.container}>
@@ -56,7 +59,7 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
           </div>
           <div className={s.containerItem}>
             <MdEmail className={s.icon} />
-            <p className={s.number}>{email}</p>
+            <p className={s.number} title={email}>{responsiveEmail}</p>
           </div>
         </li>
       </ul>   

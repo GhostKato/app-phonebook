@@ -17,13 +17,13 @@ function ContactsPage() {
   const isError = useSelector(selectIsError);
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const [isOpen, toggle] = useToggle(false);
+  const [isOpenAdd, toggleAdd] = useToggle(false);
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Escape' && isOpen) {
-      toggle();
-    } else if (event.key === 'a' && !isOpen) {
-      toggle(); 
+    if (event.key === 'Escape' && isOpenAdd) {
+      toggleAdd();
+    } else if (event.key === 'a' && !isOpenAdd) {
+      toggleAdd(); 
     }
   };
 
@@ -33,7 +33,7 @@ function ContactsPage() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpenAdd]);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -47,10 +47,10 @@ function ContactsPage() {
 
   return (
     <div className={s.container}>
-      <button className={s.btn} onClick={toggle}>
-        {isOpen ? 'Close add bar' : 'Add contact'}
+      <button className={s.btn} onClick={toggleAdd}>
+        {isOpenAdd ? 'Close add bar' : 'Add contact'}
       </button>
-      {isOpen && <AddContactForm />}
+      {isOpenAdd && <AddContactForm />}
       {contacts.length !== 0 && <SearchBox />}
       <ContactList contacts={filteredContacts} />
       {isLoading && <h1>Loading...</h1>}
