@@ -19,7 +19,7 @@ const AddContactForm = () => {
       name: values.name,
       phoneNumber: values.number,
       contactType: values.contactType,
-      email: values.email,
+      email: values.email || '',
     };
     try {
       await dispatch(addContacts(newContact)).unwrap();
