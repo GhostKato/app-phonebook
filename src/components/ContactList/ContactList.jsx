@@ -12,6 +12,8 @@ const ContactList = ({ contacts }) => {
             number={contact.phoneNumber}
             email={contact.email}
             type={contact.contactType}
+            photo={contact.photo}
+            isFavourite={contact.isFavourite}
           />
         </li>
       ))}
