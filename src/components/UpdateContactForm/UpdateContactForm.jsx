@@ -1,32 +1,14 @@
 import s from './UpdateContactForm.module.css'
 import { ErrorMessage, Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import * as Yup from 'yup';
 import { updateContact } from '../../redux/contacts/operations';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 import { IoClose } from "react-icons/io5";
+import updateContactSchema from '../../validation/updateContactSchema';
 
 const UpdateContactForm = ({contactId, onUpdate, onClose}) => {
-    const dispatch = useDispatch();
-    
-    const updateContactSchema = Yup.object({
-    name: Yup.string()      
-      .min(3, 'Name must be more than 3 characters!')
-      .max(50, 'Name must be less than 50 characters!'),
-
-    number: Yup.string()      
-      .min(3, 'Number must be more than 3 characters!')
-      .max(50, 'Number must be less than 50 characters!'),
-
-    contactType: Yup.string()
-      .oneOf(['work', 'home', 'personal'], 'Invalid contact type'),
+    const dispatch = useDispatch();   
       
-    email: Yup.string()
-      .email('Invalid email format')
-      .max(50, 'Email must be less than 50 characters')
-      .notRequired(),
-    }); 
-  
   const contact = useSelector((state) =>
     selectFilteredContacts(state).find((item) => item._id === contactId)
   );

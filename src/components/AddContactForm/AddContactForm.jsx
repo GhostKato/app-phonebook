@@ -1,32 +1,11 @@
 import s from './AddContactForm.module.css';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
 import { addContacts } from '../../redux/contacts/operations';
+import addContactSchema from '../../validation/addContactSchema';
 
 const AddContactForm = () => {
-  const dispatch = useDispatch(); 
-
-  const addContactSchema = Yup.object({
-    name: Yup.string()
-      .required('This field is required!')
-      .min(3, 'Name must be more than 3 characters!')
-      .max(50, 'Name must be less than 50 characters!'),
-
-    number: Yup.string()
-      .required('This field is required!')
-      .min(3, 'Number must be more than 3 characters!')
-      .max(50, 'Number must be less than 50 characters!'),
-
-    contactType: Yup.string()
-      .oneOf(['work', 'home', 'personal'], 'Invalid contact type')
-      .required('This field is required!'),
-
-    email: Yup.string()
-      .email('Invalid email format')
-      .max(50, 'Email must be less than 50 characters')
-      .notRequired(),
-  });
+  const dispatch = useDispatch();   
 
   const initialValues = {
     name: '',
@@ -40,7 +19,7 @@ const AddContactForm = () => {
       name: values.name,
       phoneNumber: values.number,
       contactType: values.contactType,
-      email: values.email,
+      email: values.email || '',
     };
     try {
       await dispatch(addContacts(newContact)).unwrap();
