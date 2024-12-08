@@ -68,6 +68,40 @@
   accent-color: #4caf50;
 }
 
+.btn {
+  position: relative;
+  width: 250px;
+}
+
+.inputFile {
+  display: none;
+}
+
+.previewImage {
+  width: 250px;
+  border-radius: 10px;
+}
+
+.btnFileCont {
+  position: relative;
+  width: 250px;
+}
+
+.btnFile {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.btnFileIcon {
+  font-size: 40px;
+  color: var(--color-green);
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--color-button-hover);
+  }
+}
+
 @media (min-width: 768px) {
   .input {
     width: 400px;
@@ -75,5 +109,17 @@
 
   .btn {
     width: 150px;
+  }
+
+  .previewImage {
+    width: 400px;
+  }
+
+  .btnFileCont {
+    width: 400px;
+  }
+
+  .btnFileIcon {
+    font-size: 60px;
   }
 }

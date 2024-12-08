@@ -20,13 +20,15 @@ const addContactSchema = Yup.object({
     .min(11, 'Email must be more than 11 characters!')
     .max(35, 'Email must be less than 30 characters')
     .required('This field is required!'),
-  photo: Yup.mixed()    
-    .test('fileSize', 'File size is too large', (value) => {      
-      return value && value.size <= 5 * 1024 * 1024;
-    })
-    .test('fileType', 'Unsupported file type', (value) => {      
-      return value && ['image/jpeg', 'image/png', 'image/gif'].includes(value.type);
-    }),
+  photo: Yup.mixed()
+  .test('fileSize', 'File size is too large', (value) => {
+    if (!value) return true;
+    return value.size <= 5 * 1024 * 1024;
+  })
+  .test('fileType', 'Unsupported file type', (value) => {
+    if (!value) return true;
+    return ['image/jpeg', 'image/png', 'image/gif'].includes(value.type);
+  }),
 });
 
 export default addContactSchema;

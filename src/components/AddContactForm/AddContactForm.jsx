@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { addContacts } from '../../redux/contacts/operations';
 import addContactSchema from '../../validation/addContactSchema';
 import { BASE_URL_PHOTO } from '../../constants';
+import { MdAddPhotoAlternate } from "react-icons/md";
 
 const AddContactForm = () => {
 
@@ -30,15 +31,33 @@ const AddContactForm = () => {
       photo: values.photo,
     };
 
-    dispatch(addContacts(newContact)); 
-
+    dispatch(addContacts(newContact));   
+    
     actions.resetForm();
+    
   };
 
   return (
     <Formik validationSchema={addContactSchema} initialValues={initialValues} onSubmit={handleSubmit}>
       {({ setFieldValue }) => (
         <Form className={s.form}>
+          <label className={s.btnFileCont}>
+            <span className={s.btnFile}><MdAddPhotoAlternate className={s.btnFileIcon}/></span>
+            <input
+            className={s.inputFile}  
+              type="file"
+              name="photo"
+              accept="image/*"
+              onChange={(event) => handleFileChange(event, setFieldValue, setPreview)}  
+            />
+            <ErrorMessage name="photo" component="span" className={s.error} />
+          </label>   
+          {preview ? (
+            <img src={preview} alt="Preview" className={s.previewImage} />
+          ) : (
+            <img src={BASE_URL_PHOTO} alt="Default" className={s.previewImage} />
+          )}
+          
           <label className={s.label}>
             <span>Name</span>
             <Field className={s.input} name="name" required />
@@ -74,22 +93,8 @@ const AddContactForm = () => {
               </label>
             </div>
             <ErrorMessage name="contactType" component="span" className={s.error} />
-          </label>         
-                    
-          <label className={s.label}>
-            <span className={s.span}>Photo</span>
-            <input
-              className={s.input}
-              type="file"
-              name="photo"
-              accept="image/*"
-              onChange={(event) => handleFileChange(event, setFieldValue, setPreview)}  
-            />
-            <ErrorMessage name="photo" component="span" className={s.error} />
-          </label>         
-                   
-          {preview && <img src={preview} alt="Preview" className={s.previewImage} />}
-
+          </label>    
+                                       
           <button type="submit" className={s.btn}>
             Add contact
           </button>
