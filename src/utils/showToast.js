@@ -4,13 +4,13 @@ export const showToastSuccess = (message) => {
   if (message) {    
       toast(message, {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
         progress: undefined,
-        theme: "light",
+        theme: "dark",
         type: "success",
       });
     
@@ -28,7 +28,7 @@ export const showToastError = (message) => {
       pauseOnHover: false,
       draggable: false,
       progress: undefined,
-      theme: "light",
+      theme: "dark",
       type: "error",
     });
     
