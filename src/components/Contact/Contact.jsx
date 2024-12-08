@@ -3,7 +3,7 @@ import { MdEmail, MdPermContactCalendar, MdDelete } from "react-icons/md";
 import { RxUpdate } from "react-icons/rx";
 import { useEffect } from 'react';
 import s from './Contact.module.css';
-import useToggle from '../../hooks/visibilityToggle';
+import useVisibilityToggle from '../../hooks/useVisibilityToggle';
 import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 import ConfirmDeletion from '../ConfirmDeletion/ConfirmDeletion';
 import { useDispatch } from "react-redux";
@@ -12,8 +12,8 @@ import useResponsiveEmail from '../../hooks/useResponsiveEmail';
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   
-  const [isOpenUpdate, toggleUpdate] = useToggle(false);   
-  const [isOpenDelete, toggleDelete] = useToggle(false);
+  const [isOpenUpdate, toggleUpdate] = useVisibilityToggle(false);   
+  const [isOpenDelete, toggleDelete] = useVisibilityToggle(false);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {

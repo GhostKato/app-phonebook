@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useToggle = (initialState = false) => {
+const useVisibilityToggle = (initialState = false) => {
 
     const [isOpen, setIsOpen] = useState(initialState);   
     
@@ -10,4 +10,4 @@ const useToggle = (initialState = false) => {
     return [isOpen, toggle];
 } 
 
-export default useToggle
+export default useVisibilityToggle
