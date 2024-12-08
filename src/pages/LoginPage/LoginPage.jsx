@@ -23,9 +23,9 @@ const LoginPage = () => {
     password: '',
   };
 
-  const handleSubmit = (values, options) => {    
+  const handleSubmit = (values, actions) => {    
     dispatch(logIn(values));
-    options.resetForm();
+    actions.resetForm();
   };
 
   if (isLoggedIn) {

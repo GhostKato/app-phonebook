@@ -14,7 +14,7 @@ const registrationUserSchema = Yup.object({
 
   password: Yup.string()
     .required('This field is required!')
-    .min(3, 'Password must be more than 3 characters!')
+    .min(5, 'Password must be more than 3 characters!')
     .max(20, 'Password must be less than 20 characters!'), 
 });
 

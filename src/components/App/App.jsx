@@ -10,10 +10,10 @@ import { refreshUser } from '../../redux/auth/operations';
 import { PrivateRoute } from '../../Routes/PrivateRoute';
 import { PublicRoute } from '../../Routes/PublicRoute';
 import ResetPasswordPage from '../../pages/ResetPasswordPage/ResetPasswordPage';
-import ResetPasswordRequestPage from '../../pages/ResetPasswordRequestPage/ResetPasswordRequestPage';
 import MainLoader from '../Loaders/MainLoader/MainLoader';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SendResetEmailPage from '../../pages/SendResetEmailPage/SendResetEmailPage';
 
 const HomePage = lazy(() =>
   import('../../pages/HomePage/HomePage')
@@ -57,7 +57,7 @@ function App() {
               <FavouritePage />
             </PrivateRoute>} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
-          <Route path='/request-reset' element={<ResetPasswordRequestPage />} />
+          <Route path='/request-reset' element={<SendResetEmailPage />} />
           <Route path='*' element={<NotFoundPage/>}/>
         </Route>
         </Routes>
