@@ -6,7 +6,7 @@ import { fetchContacts } from '../../redux/contacts/operations.js';
 import AddContactForm from '../../components/AddContactForm/AddContactForm.jsx';
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 import ContactList from '../../components/ContactList/ContactList.jsx';
-import useToggle from '../../hooks/visibilityToggle.js';
+import useVisibilityToggle from '../../hooks/useVisibilityToggle.js';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 import ContactsLoader from '../../components/Loaders/ContactsLoader/ContactsLoader.jsx';
 
@@ -15,7 +15,7 @@ function ContactsPage() {
   const isError = useSelector(selectIsError);
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const [isOpenAdd, toggleAdd] = useToggle(false);
+  const [isOpenAdd, toggleAdd] = useVisibilityToggle(false);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape' && isOpenAdd) {
