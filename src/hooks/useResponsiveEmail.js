@@ -5,7 +5,7 @@ const useResponsiveEmail = (email, maxLength = 20) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 405) {
+      if (window.innerWidth <= 430) {
         setResponsiveEmail(
           email.length > maxLength ? `${email.slice(0, maxLength)}...` : email
         );
