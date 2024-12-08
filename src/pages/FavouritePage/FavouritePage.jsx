@@ -4,6 +4,7 @@ import { selectFavourite } from '../../redux/contacts/selectors'
 import s from './FavouritePage.module.css'
 import { useEffect } from 'react';
 import { fetchFavourite } from '../../redux/contacts/operations';
+import ContactsLoader from '../../components/Loaders/ContactsLoader/ContactsLoader';
 
 
 const FavouritePage = () => {
@@ -16,7 +17,10 @@ const FavouritePage = () => {
 
   const favouriteContacts = useSelector(selectFavourite);
   return (
-    <ContactList contacts={favouriteContacts} />
+    <>
+      <ContactList contacts={favouriteContacts} />
+      <ContactsLoader/>
+    </>
   )
 }
 
