@@ -31,9 +31,15 @@ const AddContactForm = () => {
       photo: values.photo,
     };
 
-    dispatch(addContacts(newContact));   
+    dispatch(addContacts(newContact)); 
+         
+    actions.resetForm({
+      values: {
+        ...initialValues,
+      },
+    });    
     
-    actions.resetForm();
+    setPreview(BASE_URL_PHOTO); 
     
   };
 
