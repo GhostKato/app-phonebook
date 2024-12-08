@@ -4,9 +4,6 @@
   position: relative;
   gap: 5px;
   padding: 5px;
-  &:hover .name {
-    color: var(--color-button-hover);
-  }
   &:hover .contact {
     color: var(--color-button-hover);
   }
@@ -42,7 +39,6 @@
 
 .name {
   text-shadow: var(--text-shadow);
-  transition: color 0.3s ease;
 }
 
 .btnUpDel {
@@ -94,17 +90,17 @@
   background-color: transparent;
 }
 
-.btnFavActive {
-  color: var(--color-green);
-}
-
 .iconFav {
   color: var(--color-white);
   font-size: 25px;
   transition: color 0.3s ease;
   &:hover {
-    color: var(--color-green);
+    color: var(--color-button-hover);
   }
+}
+
+.iconFavActive {
+  color: var(--color-green);
 }
 
 @media (min-width: 768px) {

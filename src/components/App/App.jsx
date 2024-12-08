@@ -1,34 +1,39 @@
 import { Route, Routes } from 'react-router-dom';
-import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import s from './App.module.css';
 import Layout from '../Layout/Layout';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
-import HomePage from '../../pages/HomePage/HomePage';
 import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { lazy, Suspense, useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/operations';
 import { PrivateRoute } from '../../Routes/PrivateRoute';
 import { PublicRoute } from '../../Routes/PublicRoute';
-import { selectIsRefreshing } from '../../redux/auth/selectors';
 import ResetPasswordPage from '../../pages/ResetPasswordPage/ResetPasswordPage';
 import ResetPasswordRequestPage from '../../pages/ResetPasswordRequestPage/ResetPasswordRequestPage';
-import FavouritePage from '../../pages/FavouritePage/FavouritePage';
+import MainLoader from '../Loaders/MainLoader/MainLoader';
 
+const HomePage = lazy(() =>
+  import('../../pages/HomePage/HomePage')
+);
+const ContactsPage = lazy(() =>
+  import('../../pages/ContactsPage/ContactsPage')
+);
+const FavouritePage = lazy(() =>
+  import('../../pages/FavouritePage/FavouritePage')
+);
 
 function App() {  
   
-  const dispatch = useDispatch();
-
-  const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();  
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
   
-  return  isRefreshing ? null : (
-    <div className={s.container}>      
+  return  (
+    <div className={s.container}>
+      <Suspense fallback={<MainLoader/>}>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -52,7 +57,8 @@ function App() {
           <Route path='/request-reset' element={<ResetPasswordRequestPage />} />
           <Route path='*' element={<NotFoundPage/>}/>
         </Route>
-      </Routes>
+        </Routes>
+        </Suspense>
     </div>
   );
 }

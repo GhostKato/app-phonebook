@@ -65,10 +65,10 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
       </ul>   
       
       <button
-        className={`${s.btnFav} ${isFavourite ? s.btnFavActive : ''}`}
+        className={s.btnFav}
         onClick={handleFavourite}
       >
-        <FaHeart className={s.iconFav} />
+        <FaHeart className={`${s.iconFav} ${isFavourite ? s.iconFavActive : ''}`} />
       </button>
       
       <button className={`${s.btnUpDel} ${s.btnUpdate}`} onClick={() => toggleUpdate()}>

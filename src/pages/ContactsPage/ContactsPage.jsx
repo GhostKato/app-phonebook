@@ -1,19 +1,17 @@
 import s from './ContactsPage.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-
 import { useEffect } from 'react';
-import { selectIsError, selectIsLoading, selectContacts } from '../../redux/contacts/selectors.js';
+import { selectIsError, selectContacts } from '../../redux/contacts/selectors.js';
 import { fetchContacts } from '../../redux/contacts/operations.js';
 import AddContactForm from '../../components/AddContactForm/AddContactForm.jsx';
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 import ContactList from '../../components/ContactList/ContactList.jsx';
 import useToggle from '../../hooks/visibilityToggle.js';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
+import ContactsLoader from '../../components/Loaders/ContactsLoader/ContactsLoader.jsx';
 
-function ContactsPage() {
-
+function ContactsPage() {  
   
-  const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
@@ -51,9 +49,9 @@ function ContactsPage() {
         {isOpenAdd ? 'Close add bar' : 'Add contact'}
       </button>
       {isOpenAdd && <AddContactForm />}
-      {contacts.length !== 0 && <SearchBox />}
-      <ContactList contacts={filteredContacts} />
-      {isLoading && <h1>Loading...</h1>}
+      {contacts.length !== 0 && contacts.length > 5 && <SearchBox />}
+      <ContactList contacts={filteredContacts} />     
+      <ContactsLoader/>
       {isError && <h2>Something went wrong!</h2>}
     </div>
   );
