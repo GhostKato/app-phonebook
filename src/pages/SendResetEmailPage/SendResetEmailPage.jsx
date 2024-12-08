@@ -1,24 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { sendResetEmail } from '../../redux/auth/operations';
 import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
-import s from './ResetPasswordRequestPage.module.css';
+import s from './SendResetEmailPage.module.css';
 import { Link, useNavigate } from 'react-router-dom';
+import sendResetEmailSchema from '../../validation/sendResetEmailSchema';
 
-const ResetPasswordRequest = () => {
+const SendResetEmailPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const message = useSelector(selectMessage);
   const error = useSelector(selectError);
-  const loading = useSelector(selectLoading);
-
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
-  });
+  const loading = useSelector(selectLoading);  
 
    const handleSubmit = async (values, { setSubmitting }) => {
     const result = await dispatch(sendResetEmail(values.email));
@@ -33,7 +27,7 @@ const ResetPasswordRequest = () => {
       <h1 className={s.title}>Request to reset password</h1>
       <Formik
         initialValues={{ email: '' }}
-        validationSchema={validationSchema}
+        validationSchema={sendResetEmailSchema}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
@@ -61,4 +55,4 @@ const ResetPasswordRequest = () => {
   );
 };
 
-export default ResetPasswordRequest;
+export default SendResetEmailPage;

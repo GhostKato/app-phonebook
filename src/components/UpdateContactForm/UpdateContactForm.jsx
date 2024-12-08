@@ -18,6 +18,7 @@ const UpdateContactForm = ({contactId, onClose}) => {
     number: contact?.phoneNumber || '',
     contactType: contact?.contactType || 'personal',
     email: contact?.email || '',
+    photo: null,
   };  
     
   const handleSubmit = async (values, actions) => {
@@ -26,17 +27,12 @@ const UpdateContactForm = ({contactId, onClose}) => {
     phoneNumber: values.number,
     contactType: values.contactType,
     email: values.email,
-  };
-
-  try {
-    await dispatch(updateContact({ id: contactId, body: newСontact })).unwrap();    
-    actions.resetForm();
+    };    
+    dispatch(updateContact({ id: contactId, body: newСontact }));
+      actions.resetForm();
     if (onClose) {
       onClose();
-    }
-  } catch (error) {
-    console.error('Failed to update contact:', error);
-  }
+    }  
 };
     
     return (

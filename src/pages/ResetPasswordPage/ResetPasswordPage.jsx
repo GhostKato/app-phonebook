@@ -1,27 +1,20 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { resetPassword } from '../../redux/auth/operations';
 import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
 import s from './ResetPasswordPage.module.css';
+import resetPasswordSchema from '../../validation/resetPasswordSchema';
 
 const ResetPasswordPage = () => {
   const location = useLocation();
    const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const message = useSelector(selectMessage);
   const error = useSelector(selectError);
   const loading = useSelector(selectLoading);
 
-  const token = new URLSearchParams(location.search).get('token');
-
-  const validationSchema = Yup.object({
-    newPassword: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters'),
-  });
+  const token = new URLSearchParams(location.search).get('token');  
 
   const handleSubmit = (values, { setSubmitting }) => {
     if (token) {
@@ -41,7 +34,7 @@ const ResetPasswordPage = () => {
       {token ? (
         <Formik
           initialValues={{ newPassword: '' }}
-          validationSchema={validationSchema}
+          validationSchema={resetPasswordSchema}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (

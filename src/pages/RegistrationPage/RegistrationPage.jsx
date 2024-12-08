@@ -18,10 +18,10 @@ const RegistrationPage = () => {
     password: '',
   };
 
-  const handleSubmit = (values, options) => {
+  const handleSubmit = (values, actions) => {
     
     dispatch(register(values));
-    options.resetForm();
+    actions.resetForm();
   }
 
   if (isLoggedIn) {
