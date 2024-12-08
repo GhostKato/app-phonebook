@@ -12,6 +12,8 @@ import { PublicRoute } from '../../Routes/PublicRoute';
 import ResetPasswordPage from '../../pages/ResetPasswordPage/ResetPasswordPage';
 import ResetPasswordRequestPage from '../../pages/ResetPasswordRequestPage/ResetPasswordRequestPage';
 import MainLoader from '../Loaders/MainLoader/MainLoader';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = lazy(() =>
   import('../../pages/HomePage/HomePage')
@@ -33,6 +35,7 @@ function App() {
   
   return  (
     <div className={s.container}>
+      <ToastContainer />
       <Suspense fallback={<MainLoader/>}>
       <Routes>
         <Route path='/' element={<Layout />}>

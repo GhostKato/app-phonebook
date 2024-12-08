@@ -36,8 +36,7 @@ const contactsSlice = createSlice({
         return initialState;
       })
       .addCase(changeFavourite.fulfilled, (state, action) => {
-        const { _id, isFavourite } = action.payload.data.contact;
-        
+        const { _id, isFavourite } = action.payload.data.contact;        
         if (isFavourite) {
           const contact = state.contacts.find(contact => contact._id === _id);
           if (contact) {
@@ -49,15 +48,15 @@ const contactsSlice = createSlice({
       })
     .addMatcher(isAnyOf(fetchContacts.pending, deleteContacts.pending, addContacts.pending, updateContact.pending, fetchFavourite.pending, changeFavourite.pending), state => {
       state.isLoading = true;
-      state.isError = false;
+      state.isError = false;      
     })
     .addMatcher(isAnyOf(fetchContacts.rejected, deleteContacts.rejected, addContacts.rejected, updateContact.rejected, fetchFavourite.rejected, changeFavourite.rejected), state => {
       state.isLoading = false;
-      state.isError = true;
+      state.isError = true;      
     })
     .addMatcher(isAnyOf(fetchContacts.fulfilled, deleteContacts.fulfilled, addContacts.fulfilled, updateContact.fulfilled, fetchFavourite.fulfilled, changeFavourite.fulfilled), state => {
       state.isLoading = false;
-      state.isError = false;
+      state.isError = false;      
     })
   },
 });

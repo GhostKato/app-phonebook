@@ -10,7 +10,7 @@ import useToggle from '../../hooks/visibilityToggle.js';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 import ContactsLoader from '../../components/Loaders/ContactsLoader/ContactsLoader.jsx';
 
-function ContactsPage() {  
+function ContactsPage() { 
   
   const isError = useSelector(selectIsError);
   const dispatch = useDispatch();
@@ -34,7 +34,8 @@ function ContactsPage() {
   }, [isOpenAdd]);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchContacts());   
+    
   }, [dispatch]);
 
   const filteredContacts = useSelector(selectFilteredContacts);
