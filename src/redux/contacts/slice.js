@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addContacts, deleteContacts, fetchContacts, fetchFavourite, updateContact, changeFavourite } from './operations.js';
+import { addContacts, deleteContacts, fetchContacts, fetchFavourite, updateContact, updateFavourite } from './operations.js';
 import { logOut } from '../auth/operations.js';
 
 const initialState = {
@@ -35,7 +35,7 @@ const contactsSlice = createSlice({
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
-      .addCase(changeFavourite.fulfilled, (state, action) => {
+      .addCase(updateFavourite.fulfilled, (state, action) => {
         const { _id, isFavourite } = action.payload.data.contact;        
         if (isFavourite) {
           const contact = state.contacts.find(contact => contact._id === _id);
@@ -46,15 +46,15 @@ const contactsSlice = createSlice({
           state.favourite = state.favourite.filter(contact => contact._id !== _id);
         }
       })
-    .addMatcher(isAnyOf(fetchContacts.pending, deleteContacts.pending, addContacts.pending, updateContact.pending, fetchFavourite.pending, changeFavourite.pending), state => {
+    .addMatcher(isAnyOf(fetchContacts.pending, deleteContacts.pending, addContacts.pending, updateContact.pending, fetchFavourite.pending, updateFavourite.pending), state => {
       state.isLoading = true;
       state.isError = false;      
     })
-    .addMatcher(isAnyOf(fetchContacts.rejected, deleteContacts.rejected, addContacts.rejected, updateContact.rejected, fetchFavourite.rejected, changeFavourite.rejected), state => {
+    .addMatcher(isAnyOf(fetchContacts.rejected, deleteContacts.rejected, addContacts.rejected, updateContact.rejected, fetchFavourite.rejected, updateFavourite.rejected), state => {
       state.isLoading = false;
       state.isError = true;      
     })
-    .addMatcher(isAnyOf(fetchContacts.fulfilled, deleteContacts.fulfilled, addContacts.fulfilled, updateContact.fulfilled, fetchFavourite.fulfilled, changeFavourite.fulfilled), state => {
+    .addMatcher(isAnyOf(fetchContacts.fulfilled, deleteContacts.fulfilled, addContacts.fulfilled, updateContact.fulfilled, fetchFavourite.fulfilled, updateFavourite.fulfilled), state => {
       state.isLoading = false;
       state.isError = false;      
     })

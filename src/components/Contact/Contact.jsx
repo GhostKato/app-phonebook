@@ -7,7 +7,7 @@ import useVisibilityToggle from '../../hooks/useVisibilityToggle';
 import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 import ConfirmDeletion from '../ConfirmDeletion/ConfirmDeletion';
 import { useDispatch } from "react-redux";
-import { changeFavourite } from "../../redux/contacts/operations";
+import { updateFavourite } from "../../redux/contacts/operations";
 import useResponsiveEmail from '../../hooks/useResponsiveEmail';
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
@@ -33,7 +33,7 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   const dispatch = useDispatch();
   
   const handleFavourite = () => {
-  dispatch(changeFavourite({ id, body: { isFavourite: !isFavourite } }));  
+  dispatch(updateFavourite({ id, body: { isFavourite: !isFavourite } }));  
   };
   
   const responsiveEmail = useResponsiveEmail(email);

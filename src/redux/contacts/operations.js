@@ -7,8 +7,7 @@ import { showToastError } from '../../utils/showToast';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_, thunkAPI) => {
   try {
-    const { data } = await contactsApi.get('contacts');
-    showToastSuccess(MESSAGES.FETCH_CONTACTS.SUCCESS);
+    const { data } = await contactsApi.get('contacts');    
     return data;
   } catch (error) {
     showToastError(MESSAGES.FETCH_CONTACTS.ERROR);
@@ -64,8 +63,7 @@ export const deleteContacts = createAsyncThunk('contacts/deleteContact', async (
 
 export const fetchFavourite = createAsyncThunk('contacts/fetchFavourite', async (_, thunkAPI) => {
   try {
-    const { data } = await contactsApi.get('contacts?isFavourite=true');
-    showToastSuccess(MESSAGES.FETCH_FAVOURITE.SUCCESS);
+    const { data } = await contactsApi.get('contacts?isFavourite=true');    
     return data;
   } catch (error) {
     showToastError(MESSAGES.FETCH_FAVOURITE.ERROR);
@@ -74,7 +72,7 @@ export const fetchFavourite = createAsyncThunk('contacts/fetchFavourite', async 
 });
 
 
-export const changeFavourite = createAsyncThunk('contacts/changeFavourite', async ({ id, body }, thunkAPI) => {
+export const updateFavourite = createAsyncThunk('contacts/updateFavourite', async ({ id, body }, thunkAPI) => {
   try {    
     const formData = new FormData();
     formData.append('isFavourite', body.isFavourite);   
