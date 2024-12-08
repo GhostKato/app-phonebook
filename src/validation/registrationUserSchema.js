@@ -9,7 +9,7 @@ const registrationUserSchema = Yup.object({
   email: Yup.string()
     .email('Invalid email format')
     .min(11, 'Email must be more than 11 characters!')
-    .max(30, 'Email must be less than 30 characters')
+    .max(35, 'Email must be less than 30 characters')
     .required('This field is required!'),
 
   password: Yup.string()

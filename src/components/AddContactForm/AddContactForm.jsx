@@ -1,11 +1,11 @@
 import s from './AddContactForm.module.css';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { addContacts } from '../../redux/contacts/operations';
 import addContactSchema from '../../validation/addContactSchema';
 
 const AddContactForm = () => {
-  const dispatch = useDispatch();   
+  const dispatch = useDispatch();  
 
   const initialValues = {
     name: '',
@@ -21,15 +21,12 @@ const AddContactForm = () => {
       contactType: values.contactType,
       email: values.email || '',
     };
-    try {
-      await dispatch(addContacts(newContact)).unwrap();
-      
-    } catch (error) {
-      console.error('Failed to add contact:', error);
-    }
+    
+      dispatch(addContacts(newContact));     
+                    
     actions.resetForm();
-  };
-
+  }; 
+  
   return (
     <Formik validationSchema={addContactSchema} initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className={s.form}>

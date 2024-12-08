@@ -18,7 +18,7 @@ const updateContactSchema = Yup.object({
   email: Yup.string()
     .email('Invalid email format')
     .min(11, 'Email must be more than 11 characters!')
-    .max(50, 'Email must be less than 50 characters!')
+    .max(35, 'Email must be less than 50 characters!')
     .optional(),
 });
 

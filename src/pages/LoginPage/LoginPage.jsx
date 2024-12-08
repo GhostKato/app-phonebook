@@ -6,7 +6,6 @@ import { logIn } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import loginUserSchema from '../../validation/loginUserSchema';
 
-
 const LoginPage = () => {
 
   const navigate = useNavigate();
