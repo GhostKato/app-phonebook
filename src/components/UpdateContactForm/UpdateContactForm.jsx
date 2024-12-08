@@ -6,7 +6,7 @@ import { selectFilteredContacts } from '../../redux/filters/selectors';
 import { IoClose } from "react-icons/io5";
 import updateContactSchema from '../../validation/updateContactSchema';
 
-const UpdateContactForm = ({contactId, onUpdate, onClose}) => {
+const UpdateContactForm = ({contactId, onClose}) => {
     const dispatch = useDispatch();   
       
   const contact = useSelector((state) =>
@@ -21,7 +21,7 @@ const UpdateContactForm = ({contactId, onUpdate, onClose}) => {
   };  
     
   const handleSubmit = async (values, actions) => {
-  const changedСontact = {
+  const newСontact = {
     name: values.name,
     phoneNumber: values.number,
     contactType: values.contactType,
@@ -29,10 +29,7 @@ const UpdateContactForm = ({contactId, onUpdate, onClose}) => {
   };
 
   try {
-    await dispatch(updateContact({ id: contactId, body: changedСontact })).unwrap();
-    if (onUpdate) {
-      onUpdate(changedСontact);
-    }
+    await dispatch(updateContact({ id: contactId, body: newСontact })).unwrap();    
     actions.resetForm();
     if (onClose) {
       onClose();
