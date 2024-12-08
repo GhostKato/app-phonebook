@@ -1,0 +1,1 @@
+export const BASE_URL_PHOTO = 'https://res.cloudinary.com/dgujs920w/image/upload/v1733567233/kl1ou88vgebwnsblfgwf.jpg';
