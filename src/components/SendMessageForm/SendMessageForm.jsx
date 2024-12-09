@@ -1,21 +1,21 @@
 import s from './SendMessageForm.module.css';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { sendMessage } from '../../redux/message/operations';
 import { IoClose } from "react-icons/io5";
-import { selectUser } from '../../redux/auth/selectors';
+
 import sendMessageSchema from '../../validation/sendMessageSchema';
 
-const SendMessageForm = ({ contactEmail, onClose }) => {
+const SendMessageForm = ({ contactName, contactEmail, onClose }) => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  
   const initialValues = {
     message: '',
   };
 
   const handleSubmit = async (values, actions) => {
     const data = {
-      name: user.name,
+      name: contactName,
       email: contactEmail,
       message: values.message,
     };
