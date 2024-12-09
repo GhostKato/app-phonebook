@@ -19,6 +19,7 @@ export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_
 
 export const addContacts = createAsyncThunk('contacts/addContact', async (body, thunkAPI) => {
   try {
+    console.log('photo:', body); 
     const formData = createFormData(body);    
     const { data } = await contactsApi.post('contacts', formData, {
       headers: {         
@@ -35,12 +36,8 @@ export const addContacts = createAsyncThunk('contacts/addContact', async (body, 
 
 
 export const updateContact = createAsyncThunk('contacts/updateContact', async ({ id, body }, thunkAPI) => {
-  try {    
-    const formData = new FormData();
-    formData.append('name', body.name);
-    formData.append('phoneNumber', body.phoneNumber);
-    formData.append('contactType', body.contactType);
-    formData.append('email', body.email);    
+  try {   
+    const formData = createFormData(body);
     const { data } = await contactsApi.patch(`contacts/${id}`, formData, {
       headers: {         
         'Content-Type': 'multipart/form-data',

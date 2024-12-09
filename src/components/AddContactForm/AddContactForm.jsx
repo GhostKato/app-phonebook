@@ -19,7 +19,7 @@ const AddContactForm = () => {
     number: '',
     contactType: 'personal',
     email: '',
-    photo: BASE_URL_PHOTO,  
+    photo: '',  
   };
 
   const handleSubmit = (values, actions) => {
