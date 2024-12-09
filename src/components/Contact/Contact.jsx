@@ -94,7 +94,7 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
       )} 
       
       {isOpenSendMessage && (
-        <SendMessageForm contactEmail={email} onClose={toggleSendMessage} />
+        <SendMessageForm contactName={name} contactEmail={email} onClose={toggleSendMessage} />
       )}      
       
     </div>
