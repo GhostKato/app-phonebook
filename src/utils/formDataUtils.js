@@ -4,9 +4,8 @@ export const createFormData = (body) => {
   formData.append('name', body.name);
   formData.append('phoneNumber', body.phoneNumber);
   formData.append('contactType', body.contactType);
-  formData.append('email', body.email);  
-  
-  
+  formData.append('email', body.email); 
+    
   if (body.photo) {
     formData.append('photo', body.photo);
   }

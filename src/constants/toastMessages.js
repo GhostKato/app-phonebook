@@ -35,7 +35,8 @@ export const MESSAGES = {
     ERROR: "Error, please try again later!",
     },
   CHANGE_FAVOURITE: {
-    SUCCESS: "Successfully modified!",    
+    ADD_SUCCESS: "Added to favorites!", 
+    REMOVE_SUCCESS: "Removed from favorites!",
     ERROR: "Error, please try again later!",
   },
   SEND_MESSAGE: {
