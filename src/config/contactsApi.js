@@ -2,8 +2,7 @@ import axios from "axios";
 
 export const contactsApi = axios.create({
   // baseURL: "http://localhost:3000",
-  baseURL: "https://server-phonebook.onrender.com",
-  withCredentials: true,
+  baseURL: "https://server-phonebook.onrender.com",  
 });
 
 export const setToken = (token) => {
