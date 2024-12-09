@@ -9,15 +9,18 @@ import { useDispatch } from "react-redux";
 import { updateFavourite } from "../../redux/contacts/operations";
 import useResponsiveEmail from '../../hooks/useResponsiveEmail';
 import sendAction from "../../utils/sendAction";
+import SendMessageForm from "../SendMessageForm/SendMessageForm";
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   
-  const [isOpenUpdate, toggleUpdate] = useVisibilityToggle(false);   
+  const [isOpenUpdate, toggleUpdate] = useVisibilityToggle(false); 
+  const [isOpenSendMessage, toggleSendMessage] = useVisibilityToggle(false);
  
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
-      if (isOpenUpdate) toggleUpdate();      
+      if (isOpenUpdate) toggleUpdate();
+      if (isOpenSendMessage) toggleSendMessage(); 
     }
   };
 
@@ -82,12 +85,16 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
         <FaPhone className={`${s.iconTelEmail} ${s.iconTel}`} />
       </button>
       
-      <button className={`${s.btnTelEmail} ${s.btnEmail}`} onClick={() => sendAction("email", email)}>
+      <button className={`${s.btnTelEmail} ${s.btnEmail}`} onClick={() => toggleSendMessage()}>
         <MdEmail className={`${s.iconTelEmail} ${s.iconEmail}`} />
       </button>
       
       {isOpenUpdate && (
         <UpdateContactForm contactId={id} onClose={toggleUpdate} />
+      )} 
+      
+      {isOpenSendMessage && (
+        <SendMessageForm contactEmail={email} onClose={toggleSendMessage} />
       )}      
       
     </div>

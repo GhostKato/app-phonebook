@@ -1,4 +1,4 @@
-import s from './UpdateContactForm.module.css'
+import s from './UpdateContactForm.module.css';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateContact } from '../../redux/contacts/operations';
