@@ -1,7 +1,7 @@
 import { FaUser, FaPhone, FaHeart } from "react-icons/fa6";
 import { MdEmail, MdPermContactCalendar } from "react-icons/md";
 import { RxUpdate } from "react-icons/rx";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import s from './Contact.module.css';
 import useVisibilityToggle from '../../hooks/useVisibilityToggle';
 import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
@@ -10,6 +10,8 @@ import { updateFavourite } from "../../redux/contacts/operations";
 import useResponsiveEmail from '../../hooks/useResponsiveEmail';
 import sendAction from "../../utils/sendAction";
 import SendMessageForm from "../SendMessageForm/SendMessageForm";
+import { MESSAGES } from "../../constants/toastMessages";
+import { showToastError, showToastSuccess } from "../../utils/showToast";
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   
@@ -24,6 +26,22 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
     }
   };
 
+const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return; 
+    }
+    
+    if (isFavourite) {
+      showToastSuccess(MESSAGES.CHANGE_FAVOURITE.ADD_SUCCESS);
+    } else {
+      showToastError(MESSAGES.CHANGE_FAVOURITE.REMOVE_SUCCESS);
+    }
+  }, [isFavourite]);
+  
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
