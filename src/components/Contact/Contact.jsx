@@ -35,7 +35,7 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   const dispatch = useDispatch();
   
   const handleFavourite = () => {
-  dispatch(updateFavourite({ id, body: { isFavourite: !isFavourite } }));  
+    dispatch(updateFavourite({ id, body: { isFavourite: !isFavourite } }));      
   };
   
   const responsiveEmail = useResponsiveEmail(email);

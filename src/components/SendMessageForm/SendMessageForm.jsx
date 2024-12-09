@@ -34,7 +34,7 @@ const SendMessageForm = ({ contactEmail, onClose }) => {
           <IoClose className={s.iconClose} />
         </button>
 
-        <h1 className={s.title}>Send a Message</h1>
+        <h1 className={s.title}>Send a message to the mail</h1>
         <Formik
           validationSchema={sendMessageSchema}
           initialValues={initialValues}
