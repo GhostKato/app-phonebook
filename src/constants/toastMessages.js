@@ -38,4 +38,8 @@ export const MESSAGES = {
     SUCCESS: "Successfully modified!",    
     ERROR: "Error, please try again later!",
   },
+  SEND_MESSAGE: {
+    SUCCESS: "Email sent successfully!",    
+    ERROR: "Error, please try again later!",
+  },
 };
