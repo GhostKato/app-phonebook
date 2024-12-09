@@ -36,16 +36,24 @@ const contactsSlice = createSlice({
         return initialState;
       })
       .addCase(updateFavourite.fulfilled, (state, action) => {
-        const { _id, isFavourite } = action.payload.data.contact;        
-        if (isFavourite) {
-          const contact = state.contacts.find(contact => contact._id === _id);
-          if (contact) {
-            state.favourite.push(contact);
-          }
-        } else {
-          state.favourite = state.favourite.filter(contact => contact._id !== _id);
-        }
-      })
+  const { _id, isFavourite } = action.payload.data.contact; 
+  
+  const contactIndex = state.contacts.findIndex(contact => contact._id === _id);
+
+  if (contactIndex !== -1) {
+    
+    state.contacts[contactIndex].isFavourite = isFavourite; }
+  
+  if (isFavourite) {
+    const contact = state.contacts.find(contact => contact._id === _id);
+    if (contact && !state.favourite.find(fav => fav._id === _id)) {
+      state.favourite.push(contact);
+    }
+  } else {
+    
+    state.favourite = state.favourite.filter(contact => contact._id !== _id);
+  }
+})
     .addMatcher(isAnyOf(fetchContacts.pending, deleteContacts.pending, addContacts.pending, updateContact.pending, fetchFavourite.pending, updateFavourite.pending), state => {
       state.isLoading = true;
       state.isError = false;      

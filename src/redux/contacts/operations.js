@@ -83,7 +83,7 @@ export const updateFavourite = createAsyncThunk('contacts/updateFavourite', asyn
         'Content-Type': 'multipart/form-data',
       },
     });
-    showToastSuccess(MESSAGES.CHANGE_FAVOURITE.SUCCESS);
+    showToastSuccess(MESSAGES.CHANGE_FAVOURITE.SUCCESS);    
     return data;
   } catch (error) {
     showToastError(MESSAGES.CHANGE_FAVOURITE.ERROR);
