@@ -29,8 +29,9 @@
 
 .photo {
   width: 100px;
-  height: auto;
+  height: 100px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .icon {
@@ -41,7 +42,7 @@
   text-shadow: var(--text-shadow);
 }
 
-.btnUpDel {
+.btnTelEmail {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,31 +52,32 @@
   background-color: transparent;
 }
 
-.btnUpdate {
+.btnTel {
   top: 8px;
   right: 5px;
 }
 
-.btnDelete {
+.btnEmail {
   top: 40px;
   right: 5px;
 }
 
-.iconUpDel {
+.iconTelEmail {
   font-size: 25px;
-  color: var(--color-white);
   transition: color 0.3s ease;
 }
 
-.iconUpdate {
+.iconTel {
+  color: var(--color-green);
   &:hover {
-    color: var(--yellow-button-hover);
+    color: var(--color-button-hover);
   }
 }
 
-.iconDelete {
+.iconEmail {
+  color: var(--yellow-button);
   &:hover {
-    color: var(--red-button-hover);
+    color: var(--yellow-button-hover);
   }
 }
 
@@ -99,8 +101,28 @@
   }
 }
 
+.btnEdit {
+  position: absolute;
+  bottom: 8px;
+  left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.iconEdit {
+  color: var(--color-white);
+  font-size: 25px;
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--color-button-hover);
+  }
+}
+
 .iconFavActive {
-  color: var(--color-green);
+  color: var(--red-button);
 }
 
 @media (min-width: 768px) {
@@ -117,17 +139,17 @@
     gap: 15px;
   }
 
-  .btnUpdate {
+  .btnTel {
     top: 16px;
     right: 10px;
   }
 
-  .btnDelete {
+  .btnEmail {
     top: 60px;
     right: 10px;
   }
 
-  .iconUpDel {
+  .iconTelEmail {
     font-size: 30px;
   }
 }

@@ -1,24 +1,23 @@
 import { FaUser, FaPhone, FaHeart } from "react-icons/fa6";
-import { MdEmail, MdPermContactCalendar, MdDelete } from "react-icons/md";
+import { MdEmail, MdPermContactCalendar } from "react-icons/md";
 import { RxUpdate } from "react-icons/rx";
 import { useEffect } from 'react';
 import s from './Contact.module.css';
 import useVisibilityToggle from '../../hooks/useVisibilityToggle';
 import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
-import ConfirmDeletion from '../ConfirmDeletion/ConfirmDeletion';
 import { useDispatch } from "react-redux";
 import { updateFavourite } from "../../redux/contacts/operations";
 import useResponsiveEmail from '../../hooks/useResponsiveEmail';
+import sendAction from "../../utils/sendAction";
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
   
   const [isOpenUpdate, toggleUpdate] = useVisibilityToggle(false);   
-  const [isOpenDelete, toggleDelete] = useVisibilityToggle(false);
+ 
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
-      if (isOpenUpdate) toggleUpdate();
-      if (isOpenDelete) toggleDelete();
+      if (isOpenUpdate) toggleUpdate();      
     }
   };
 
@@ -28,7 +27,7 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpenUpdate, isOpenDelete]); 
+  }, [isOpenUpdate]); 
 
   const dispatch = useDispatch();
   
@@ -70,22 +69,27 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
       >
         <FaHeart className={`${s.iconFav} ${isFavourite ? s.iconFavActive : ''}`} />
       </button>
+
+      <button
+        className={s.btnEdit}
+        onClick={() => toggleUpdate()}
+      >
+        <RxUpdate className={s.iconEdit} />
+      </button>
+
       
-      <button className={`${s.btnUpDel} ${s.btnUpdate}`} onClick={() => toggleUpdate()}>
-        <RxUpdate className={`${s.iconUpDel} ${s.iconUpdate}`} />
+      <button className={`${s.btnTelEmail} ${s.btnTel}`} onClick={() => sendAction("call", number)}>
+        <FaPhone className={`${s.iconTelEmail} ${s.iconTel}`} />
       </button>
       
-      <button className={`${s.btnUpDel} ${s.btnDelete}`} onClick={() => toggleDelete()}>
-        <MdDelete className={`${s.iconUpDel} ${s.iconDelete}`} />
+      <button className={`${s.btnTelEmail} ${s.btnEmail}`} onClick={() => sendAction("email", email)}>
+        <MdEmail className={`${s.iconTelEmail} ${s.iconEmail}`} />
       </button>
       
       {isOpenUpdate && (
         <UpdateContactForm contactId={id} onClose={toggleUpdate} />
-      )}
+      )}      
       
-      {isOpenDelete && (
-        <ConfirmDeletion contactId={id} onClose={toggleDelete} />
-      )}
     </div>
   );
 };
