@@ -1,7 +1,6 @@
 export const MESSAGES = {
-  REGISTER: {
-    SUCCESS: "Welcome to TaskPro! 🚀",
-    ERROR: "Email already in use. Try logging in or reset your password.",
+  REGISTER: {    
+    ERROR: "Email is already in use. Try another mail!",
   },
   LOGIN: {
     SUCCESS: "Welcome to TaskPro! 🚀",

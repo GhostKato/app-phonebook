@@ -19,7 +19,7 @@ const addContactSchema = Yup.object({
     .email('Invalid email format')
     .min(11, 'Email must be more than 11 characters!')
     .max(35, 'Email must be less than 30 characters')
-     .required('This field is required!'),
+    .required('This field is required!'),  
 });
 
 export default addContactSchema;

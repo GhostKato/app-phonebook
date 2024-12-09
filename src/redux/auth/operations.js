@@ -10,12 +10,17 @@ export const register = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       await contactsApi.post('/auth/register', credentials);    
-      const { email, password } = credentials;
-      const loginResponse = await contactsApi.post('/auth/login', { email, password });     
-      setToken(loginResponse.data.data.accessToken);      
-      showToastSuccess(MESSAGES.REGISTER.SUCCESS);
-      return loginResponse.data.data;      
-    } catch (err) {
+      const { email, password } = credentials;      
+      try {
+        const loginResponse = await contactsApi.post('/auth/login', { email, password });
+        setToken(loginResponse.data.data.accessToken);      
+        showToastSuccess(MESSAGES.LOGIN.SUCCESS);
+        return loginResponse.data.data;
+      } catch (loginError) {        
+        showToastError(MESSAGES.LOGIN.ERROR);
+        return thunkApi.rejectWithValue(loginError.message);
+      }
+    } catch (err) {      
       showToastError(MESSAGES.REGISTER.ERROR);
       return thunkApi.rejectWithValue(err.message);
     }
