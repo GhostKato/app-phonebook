@@ -18,8 +18,7 @@ export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_
 
 
 export const addContacts = createAsyncThunk('contacts/addContact', async (body, thunkAPI) => {
-  try {
-    console.log('photo:', body); 
+  try {     
     const formData = createFormData(body);    
     const { data } = await contactsApi.post('contacts', formData, {
       headers: {         

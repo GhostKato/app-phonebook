@@ -59,15 +59,15 @@
 
 .btnEmail {
   top: 40px;
-  right: 5px;
+  right: 1px;
 }
 
 .iconTelEmail {
-  font-size: 25px;
   transition: color 0.3s ease;
 }
 
 .iconTel {
+  font-size: 25px;
   color: var(--color-green);
   &:hover {
     color: var(--color-button-hover);
@@ -75,6 +75,7 @@
 }
 
 .iconEmail {
+  font-size: 33px;
   color: var(--yellow-button);
   &:hover {
     color: var(--yellow-button-hover);
@@ -149,8 +150,12 @@
     right: 10px;
   }
 
-  .iconTelEmail {
+  .iconTel {
     font-size: 30px;
+  }
+
+  .iconEmail {
+    font-size: 38px;
   }
 }
 
