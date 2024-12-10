@@ -29,7 +29,7 @@ const AddContactForm = () => {
       contactType: values.contactType,
       email: values.email || '',
       photo: values.photo,
-    };
+    };    
 
     dispatch(addContacts(newContact)); 
          
