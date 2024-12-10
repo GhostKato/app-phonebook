@@ -1,7 +1,7 @@
 import s from './SendMessageForm.module.css';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-import { sendMessage } from '../../redux/message/operations';
+import { sendMessage } from '../../redux/user/operations';
 import { IoClose } from "react-icons/io5";
 
 import sendMessageSchema from '../../validation/sendMessageSchema';

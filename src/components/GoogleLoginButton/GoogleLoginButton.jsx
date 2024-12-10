@@ -6,8 +6,10 @@ const GoogleLoginButton = () => {
   const handleGoogleLogin = async () => {
     try {
       const url = await getGoogleAuthUrl();
+
+      window.open(url, '_blank');      
       
-      window.location.href = url;
+      // window.location.href = url;
     } catch (error) {
       console.error('Authorization initialization failed', error);
     }
