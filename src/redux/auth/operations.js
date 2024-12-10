@@ -104,34 +104,38 @@ export const resetPassword = createAsyncThunk(
 
 export const getGoogleAuthUrl = async () => {
   try {
-    const response = await contactsApi.get('/auth/get-oauth-url');
+    // Використовуємо contactsApi для запиту
+    const res = await contactsApi.get('/auth/get-oauth-url');
     
-    if (response.status !== 200) {
+    if (res.status !== 200) {
       throw new Error('Unable to get authorization URL');
     }
-    console.log(response.data.data.url);
-    return response.data.data.url; 
+
+    console.log('Google Auth URL:', res.data.data.url);
+    return res.data.data.url;  // Повертаємо отриманий URL
   } catch (error) {
-    console.error('Error getting Google Auth URL', error);
-    throw error;
+    console.error('Error getting Google Auth URL:', error);
+    throw error;  // Викидаємо помилку для подальшої обробки
   }
 };
 
 
 export const exchangeAuthCodeForToken = async (code) => {
   try {
-    const response = await contactsApi.post('/auth/confirm-oauth', {     
-      
-      body: JSON.stringify({ code }),
+    // Відправляємо код на сервер
+    const res = await contactsApi.post('/auth/confirm-oauth', {
+      code,  // Параметр просто передаємо як об'єкт
     });
 
-    if (!response.ok) {
+    // Перевіряємо статус відповіді
+    if (res.status !== 200) {
       throw new Error('Error exchanging code for token');
     }
 
-    const data = await response.json();
-    return data;
+    // Повертаємо дані з відповіді
+    return res.data;
   } catch (error) {
-    throw new Error('Error sending code to server');    
+    console.error('Error exchanging code for token:', error);
+    throw new Error('Error sending code to server');
   }
 };

@@ -14,6 +14,7 @@ import MainLoader from '../Loaders/MainLoader/MainLoader';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SendResetEmailPage from '../../pages/SendResetEmailPage/SendResetEmailPage';
+import GoogleAuthCallback from '../GoogleAuthCallback/GoogleAuthCallback';
 
 const HomePage = lazy(() =>
   import('../../pages/HomePage/HomePage')
@@ -57,7 +58,8 @@ function App() {
               <FavouritePage />
             </PrivateRoute>} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
-          <Route path='/request-reset' element={<SendResetEmailPage />} />
+            <Route path='/request-reset' element={<SendResetEmailPage />} />
+            <Route path='/confirm-google-auth' element={<GoogleAuthCallback />} />
           <Route path='*' element={<NotFoundPage/>}/>
         </Route>
         </Routes>
