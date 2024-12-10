@@ -1,0 +1,36 @@
+.googleBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  position: absolute;
+  bottom: 44px;
+  right: 18px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  transition: background-color 0.3s ease;
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-button-hover);
+    box-shadow: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .googleBtn {
+    width: 150px;
+    bottom: 47px;
+    right: 18px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .googleBtn {
+    width: 150px;
+    bottom: 53px;
+    right: 18px;
+  }
+}
