@@ -100,3 +100,38 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+
+export const getGoogleAuthUrl = async () => {
+  try {
+    const response = await contactsApi.get('/auth/get-oauth-url');
+    
+    if (response.status !== 200) {
+      throw new Error('Unable to get authorization URL');
+    }
+    console.log(response.data.data.url);
+    return response.data.data.url; 
+  } catch (error) {
+    console.error('Error getting Google Auth URL', error);
+    throw error;
+  }
+};
+
+
+export const exchangeAuthCodeForToken = async (code) => {
+  try {
+    const response = await contactsApi.post('/auth/confirm-oauth', {     
+      
+      body: JSON.stringify({ code }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error exchanging code for token');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('Error sending code to server');    
+  }
+};

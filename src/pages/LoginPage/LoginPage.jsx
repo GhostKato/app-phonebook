@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import loginUserSchema from '../../validation/loginUserSchema';
+import GoogleLoginButton from '../../components/GoogleLoginButton/GoogleLoginButton';
 
 const LoginPage = () => {
 
@@ -33,7 +34,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
+    <div className={s.container}>
       <Formik validationSchema={loginUserSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
           <label className={s.label}>
@@ -44,11 +45,16 @@ const LoginPage = () => {
             <span>Password</span>
             <Field className={s.input} name='password' type='password' placeholder='Enter your password' />
           </label>          
-            <button className={s.btn} type='submit'>Log In</button>           
-          <p>You don't have account? <Link className={s.link} to='/register'>Sing up!</Link></p>
+          <div className={s.containerBtn}>
+            <button className={`${s.btn} ${s.btnLogin}`} type='submit'>Log In</button>
+          </div>           
+          <p className={s.text}>You don't have account? <Link className={s.link} to='/register'>Sing up!</Link></p>
         </Form>
       </Formik>
-      <button className={s.btn} onClick={handleResetPassword}>Reset password</button>
+      <div className={s.containerBtn}>
+        <GoogleLoginButton />
+      </div>
+      <button className={`${s.btn} ${s.btnReset}`} onClick={handleResetPassword}>Reset password</button>
     </div>
   )
 }

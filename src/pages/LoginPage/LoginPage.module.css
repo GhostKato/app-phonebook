@@ -1,3 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerBtn {
+  position: relative;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -38,12 +49,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
   width: 80px;
   height: 40px;
   border-radius: 10px;
   border: none;
-  margin-top: 15px;
   background-color: var(--color-green);
   color: var(--color-white);
   transition: background-color 0.3s ease;
@@ -54,9 +63,19 @@
   }
 }
 
-.contBtn {
-  display: flex;
-  gap: 10px;
+.btnReset {
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.btnLogin {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.text {
+  margin-top: 60px;
 }
 
 .link {
@@ -75,5 +94,17 @@
 
   .btn {
     width: 150px;
+  }
+
+  .btnLogin {
+    top: 15px;
+    left: 15px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .btnLogin {
+    top: 15px;
+    left: 15px;
   }
 }
