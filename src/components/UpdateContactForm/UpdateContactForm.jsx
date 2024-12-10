@@ -31,7 +31,7 @@ const UpdateContactForm = ({contactId, onClose}) => {
     number: contact?.phoneNumber || '',
     contactType: contact?.contactType || 'personal',
     email: contact?.email || '',
-    photo: contact?.photo || null,
+    photo: '',
   };
 
   const handleSubmit = async (values, actions) => {
@@ -42,6 +42,7 @@ const UpdateContactForm = ({contactId, onClose}) => {
       email: values.email,
       photo: values.photo,
     };
+    
     dispatch(updateContact({ id: contactId, body: newContact }));
     actions.resetForm();
     if (onClose) {
