@@ -19,7 +19,7 @@ const SendMessageForm = ({ contactName, contactEmail, onClose }) => {
       email: contactEmail,
       message: values.message,
     };
-    console.log(data);
+    
     dispatch(sendMessage(data));
     actions.resetForm();
     if (onClose) {
