@@ -9,22 +9,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 30px;
   border: none;
   border-radius: 10px;
-  background-color: var(--color-green);
-  color: var(--color-white);
+  background-color: transparent;
   transition: background-color 0.3s ease;
-  box-shadow: var(--box-shadow);
+
   &:hover {
     background-color: var(--color-button-hover);
     box-shadow: var(--box-shadow);
   }
 }
 
+.logoutIcon {
+  font-size: 25px;
+  color: var(--red-button);
+}
+
 @media (min-width: 768px) {
-  .btn {
-    width: 70px;
+  .logoutIcon {
+    font-size: 40px;
   }
 }

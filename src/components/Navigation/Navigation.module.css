@@ -29,3 +29,12 @@
     gap: 10px;
   }
 }
+
+.containerIcon {
+  position: relative;
+}
+
+.favouriteIcon {
+  position: absolute;
+  bottom: 6px;
+}

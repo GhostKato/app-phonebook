@@ -3,6 +3,8 @@ import s from './UserMenu.module.css'
 import { selectUser } from '../../redux/auth/selectors'
 import { logOut } from '../../redux/auth/operations';
 import useResponsiveName from '../../hooks/useResponsiveName';
+import { GiExitDoor } from "react-icons/gi";
+import { MdExitToApp } from "react-icons/md";
 
 const UserMenu = () => {  
 
@@ -15,7 +17,7 @@ const UserMenu = () => {
   return (
     <div className={s.container}>      
       <p title={user.name}> {responsiveName}</p>                          
-      <button onClick={() => dispatch(logOut())} className={s.btn} type='button'>logout</button>
+      <button onClick={() => dispatch(logOut())} className={s.btn} type='button'><MdExitToApp className={s.logoutIcon} /></button>
     </div>
   )
 }
