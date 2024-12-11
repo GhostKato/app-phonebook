@@ -35,6 +35,7 @@ export const logIn = createAsyncThunk(
       const { data } = await contactsApi.post('auth/login', credentials);     
       setToken(data.data.accessToken);       
       showToastSuccess(MESSAGES.LOGIN.SUCCESS);
+      console.log(`дата`, data.data);
       return data.data;
     } catch (err) {
       showToastError(MESSAGES.LOGIN.ERROR);
