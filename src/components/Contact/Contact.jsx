@@ -1,38 +1,38 @@
 import { FaUser, FaPhone, FaHeart } from "react-icons/fa6";
 import { MdEmail, MdPermContactCalendar } from "react-icons/md";
 import { RxUpdate } from "react-icons/rx";
-import { useEffect, useRef } from 'react';
-import s from './Contact.module.css';
-import useVisibilityToggle from '../../hooks/useVisibilityToggle';
-import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateFavourite } from "../../redux/contacts/operations";
 import useResponsiveEmail from '../../hooks/useResponsiveEmail';
 import sendAction from "../../utils/sendAction";
 import SendMessageForm from "../SendMessageForm/SendMessageForm";
+import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 import { MESSAGES } from "../../constants/toastMessages";
 import { showToastError, showToastSuccess } from "../../utils/showToast";
+import { selectSendMessage, selectUpdateContact } from "../../redux/modal/selectors";  // Імпортуємо селектори
+import { closeModal, openModal } from "../../redux/modal/slice";
+import { useEffect, useRef } from "react";
+import s from './Contact.module.css'
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
+  const dispatch = useDispatch();
   
-  const [isOpenUpdate, toggleUpdate] = useVisibilityToggle(false); 
-  const [isOpenSendMessage, toggleSendMessage] = useVisibilityToggle(false);
- 
+  const isOpenUpdateContact = useSelector((state) => selectUpdateContact(state, id));
+  const isOpenSendMessage = useSelector((state) => selectSendMessage(state, id));
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
-      if (isOpenUpdate) toggleUpdate();
-      if (isOpenSendMessage) toggleSendMessage(); 
+      if (isOpenUpdateContact) dispatch(closeModal({ contactId: id, modalType: 'updateContact' }));
+      if (isOpenSendMessage) dispatch(closeModal({ contactId: id, modalType: 'sendMessage' }));
     }
   };
 
-const isFirstRender = useRef(true);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    
     if (isFirstRender.current) {
       isFirstRender.current = false;
-      return; 
+      return;
     }
     
     if (isFavourite) {
@@ -41,27 +41,41 @@ const isFirstRender = useRef(true);
       showToastError(MESSAGES.CHANGE_FAVOURITE.REMOVE_SUCCESS);
     }
   }, [isFavourite]);
-  
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpenUpdate]); 
+  }, [isOpenUpdateContact, isOpenSendMessage]);
 
-  const dispatch = useDispatch();
-  
   const handleFavourite = () => {
-    dispatch(updateFavourite({ id, body: { isFavourite: !isFavourite } }));      
+    dispatch(updateFavourite({ id, body: { isFavourite: !isFavourite } }));
   };
-  
+
   const responsiveEmail = useResponsiveEmail(email);
+
+  const handleUpdateToggle = () => {
+    if (isOpenUpdateContact) {
+      dispatch(closeModal({ contactId: id, modalType: 'updateContact' }));
+    } else {
+      dispatch(openModal({ contactId: id, modalType: 'updateContact' }));      
+    }
+  };
+
+  const handleMessageToggle = () => {
+    if (isOpenSendMessage) {
+      dispatch(closeModal({ contactId: id, modalType: 'sendMessage' }));
+    } else {
+      dispatch(openModal({ contactId: id, modalType: 'sendMessage' }));      
+    }
+  };
 
   return (
     <div className={s.container}>
       <img className={s.photo} src={photo} alt="Contact photo" />
-      <ul className={s.contact}>        
+      <ul className={s.contact}>
         <li className={s.containerPart}>
           <div className={s.containerItem}>
             <FaUser className={s.icon} />
@@ -83,38 +97,30 @@ const isFirstRender = useRef(true);
           </div>
         </li>
       </ul>   
-      
-      <button
-        className={s.btnFav}
-        onClick={handleFavourite}
-      >
+
+      <button className={s.btnFav} onClick={handleFavourite}>
         <FaHeart className={`${s.iconFav} ${isFavourite ? s.iconFavActive : ''}`} />
       </button>
 
-      <button
-        className={s.btnEdit}
-        onClick={() => toggleUpdate()}
-      >
+      <button className={s.btnEdit} onClick={handleUpdateToggle}>
         <RxUpdate className={s.iconEdit} />
       </button>
 
-      
       <button className={`${s.btnTelEmail} ${s.btnTel}`} onClick={() => sendAction("call", number)}>
         <FaPhone className={`${s.iconTelEmail} ${s.iconTel}`} />
       </button>
-      
-      <button className={`${s.btnTelEmail} ${s.btnEmail}`} onClick={() => toggleSendMessage()}>
+
+      <button className={`${s.btnTelEmail} ${s.btnEmail}`} onClick={handleMessageToggle}>
         <MdEmail className={`${s.iconTelEmail} ${s.iconEmail}`} />
       </button>
-      
-      {isOpenUpdate && (
-        <UpdateContactForm contactId={id} onClose={toggleUpdate} />
-      )} 
-      
+
+      {isOpenUpdateContact && (
+        <UpdateContactForm contactId={id} onClose={handleUpdateToggle} />
+      )}
+
       {isOpenSendMessage && (
-        <SendMessageForm contactName={name} contactEmail={email} onClose={toggleSendMessage} />
-      )}      
-      
+        <SendMessageForm contactName={name} contactEmail={email} onClose={handleMessageToggle} />
+      )}
     </div>
   );
 };
