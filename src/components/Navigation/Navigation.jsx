@@ -23,9 +23,9 @@ const Navigation = () => {
           <NavLink className={buildLinkClass} to='/contacts'>Contacts</NavLink>
         }
       </li>
-      <li>
+      <li className={s.containerIcon}>
         {isLoggedIn &&
-          <NavLink className={buildLinkClass} to='/favourite'><FaHeart /></NavLink>
+          <NavLink className={buildLinkClass} to='/favourite'><FaHeart className={s.favouriteIcon} /></NavLink>
         }
       </li>
     </ul>
