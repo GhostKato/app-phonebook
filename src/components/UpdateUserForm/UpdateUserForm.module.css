@@ -1,0 +1,187 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.74);
+  z-index: 999;
+}
+
+.modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 325px;
+  background-color: var(--color-one);
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--color-one);
+  box-shadow: inset var(--box-shadow);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.span {
+  text-shadow: var(--text-shadow);
+}
+
+.input {
+  height: 40px;
+  width: 250px;
+  border-radius: 5px;
+  padding-left: 10px;
+  border: none;
+  background-color: var(--color-two);
+  color: var(--color-white);
+  transition: outline 0.3s ease;
+  box-shadow: var(--box-shadow);
+  &:focus,
+  &:hover {
+    outline: 2px solid var(--color-button-hover);
+    box-shadow: none;
+  }
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 15px;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  transition: background-color 0.3s ease;
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-button-hover);
+    box-shadow: none;
+  }
+}
+
+.btnClose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+}
+
+.iconClose {
+  color: var(--red-button);
+  font-size: 25px;
+  &:hover {
+    color: var(--red-button-hover);
+  }
+}
+
+.error {
+  color: red;
+  font-size: 20px;
+}
+
+.title {
+  color: var(--color-green);
+  font-size: 20px;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.inputFile {
+  display: none;
+}
+
+.previewImage {
+  width: 250px;
+  border-radius: 10px;
+}
+
+.btnFileCont {
+  position: relative;
+  width: 250px;
+}
+
+.btnFile {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.btnFileIcon {
+  font-size: 40px;
+  color: var(--color-green);
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--color-button-hover);
+  }
+}
+
+@media (min-width: 768px) {
+  .input {
+    width: 400px;
+  }
+
+  .btn {
+    width: 150px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .modal {
+    width: 600px;
+  }
+
+  .btnClose {
+    top: 18px;
+  }
+
+  .iconClose {
+    font-size: 30px;
+  }
+
+  .previewImage {
+    width: 400px;
+  }
+
+  .btnFileCont {
+    width: 400px;
+  }
+
+  .btnFileIcon {
+    font-size: 60px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .btnClose {
+    top: 13px;
+    right: 7px;
+  }
+
+  .iconClose {
+    font-size: 40px;
+  }
+}

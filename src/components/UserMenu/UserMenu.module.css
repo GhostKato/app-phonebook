@@ -1,43 +1,29 @@
 .container {
+  position: absolute;
   display: flex;
-  gap: 5px;
   justify-content: center;
   align-items: center;
-}
-
-.photo {
-  width: 30px;
-  height: 30px;
+  flex-direction: column;
+  gap: 5px;
   border-radius: 10px;
+  top: 80px;
+  right: 30px;
+  padding: 5px;
+  background-color: var(--color-one);
+  box-shadow: inset var(--box-shadow);
 }
 
 .btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 10px;
   background-color: transparent;
-  transition: background-color 0.3s ease;
-
+  border: none;
+  color: var(--color-white);
   &:hover {
-    background-color: var(--color-button-hover);
-    box-shadow: var(--box-shadow);
+    color: var(--color-button-hover);
   }
 }
 
-.logoutIcon {
-  font-size: 25px;
-  color: var(--red-button);
-}
-
-@media (min-width: 768px) {
-  .logoutIcon {
-    font-size: 40px;
-  }
-
-  .photo {
-    width: 45px;
-    height: 45px;
+@media (min-width: 430px) {
+  .container {
+    display: none;
   }
 }

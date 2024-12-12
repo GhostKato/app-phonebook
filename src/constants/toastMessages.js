@@ -39,6 +39,10 @@ export const MESSAGES = {
     REMOVE_SUCCESS: "Removed from favorites!",
     ERROR: "Error, please try again later!",
   },
+  UPDATE_USER: {
+    SUCCESS: "User updated!",
+    ERROR: "Error, please try again later!",
+    },
   SEND_MESSAGE: {
     SUCCESS: "Email sent successfully!",    
     ERROR: "Error, please try again later!",
