@@ -1,25 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = {};  
 
 const modalsSlice = createSlice({
   name: 'modals',
   initialState,
-  reducers: {
+  reducers: {    
     openModal(state, action) {
-      const { contactId, modalType } = action.payload;
-      state[contactId] = { ...state[contactId], [modalType]: true };
-    },
+      const { contactId, modalType } = action.payload;      
+      const id = contactId === null ? modalType : contactId;      
+      state[id] = { ...state[id], [modalType]: true };
+    },    
     closeModal(state, action) {
       const { contactId, modalType } = action.payload;
-      if (state[contactId]) {
-        state[contactId] = { ...state[contactId], [modalType]: false };
+      const id = contactId === null ? modalType : contactId;      
+      if (state[id]) {
+        state[id] = { ...state[id], [modalType]: false };
       }
-    },
+    },    
     toggleModal(state, action) {
       const { contactId, modalType } = action.payload;
-      if (state[contactId]) {
-        state[contactId] = { ...state[contactId], [modalType]: !state[contactId][modalType] };
+      const id = contactId === null ? modalType : contactId;      
+      if (state[id]) {
+        state[id] = { ...state[id], [modalType]: !state[id][modalType] };
+      } else {        
+        state[id] = { [modalType]: true };
       }
     },
   },
