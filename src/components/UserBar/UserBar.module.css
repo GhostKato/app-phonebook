@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-button-hover);
+    box-shadow: var(--box-shadow);
+  }
+}
+
+.logoutIcon {
+  font-size: 25px;
+  color: var(--red-button);
+}
+
+@media (min-width: 768px) {
+  .logoutIcon {
+    font-size: 40px;
+  }
+
+  .photo {
+    width: 45px;
+    height: 45px;
+  }
+}

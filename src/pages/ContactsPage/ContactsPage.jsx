@@ -49,10 +49,19 @@ function ContactsPage() {
     return <p>No contacts available.</p>;
   }
 
+  const handleAddContactToggle = () => {
+    if (isOpenAddContact) {
+      dispatch(closeModal({ contactId: null, modalType: 'addContact' }));
+    } else {
+      dispatch(openModal({ contactId: null, modalType: 'addContact' }));
+      dispatch(closeModal({ contactId: null, modalType: 'menuUser' }));     
+    }
+  };
+
   return (
     <div className={s.container}>
       
-      <button className={s.btn} onClick={() =>   dispatch(toggleModal({ contactId: null, modalType: 'addContact' }))}>
+      <button className={s.btn} onClick={handleAddContactToggle}>
         {isOpenAddContact ? 'Close add bar' : 'Add contact'}
       </button>
       
