@@ -1,6 +1,6 @@
 import s from './ContactsPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { selectIsError, selectContacts } from '../../redux/contacts/selectors';
 import { fetchContacts } from '../../redux/contacts/operations';
 import AddContactForm from '../../components/AddContactForm/AddContactForm';
@@ -8,22 +8,24 @@ import SearchBox from '../../components/SearchBox/SearchBox';
 import ContactList from '../../components/ContactList/ContactList';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 import ContactsLoader from '../../components/Loaders/ContactsLoader/ContactsLoader';
+import { selectAddContact } from '../../redux/modal/selectors';
+import { closeModal, openModal, toggleModal } from '../../redux/modal/slice';
 
-function ContactsPage() {
+function ContactsPage() {  
 
-  const [isOpenAddContact, setIsAddContactOpen] = useState(false);
+  const isOpenAddContact = useSelector(selectAddContact);  
   
   const dispatch = useDispatch();  
   
   const isError = useSelector(selectIsError);
-  const contacts = useSelector(selectContacts);
-    
+  const contacts = useSelector(selectContacts);    
   
   const handleKeyDown = (event) => {
     if (event.key === 'Escape' && isOpenAddContact) {
-       setIsAddContactOpen(false);
+       dispatch(closeModal({ contactId: null, modalType: 'addContact' }));
     } else if (event.key === 'a' && !isOpenAddContact) {
-      setIsAddContactOpen(true);
+      dispatch(openModal({ contactId: null, modalType: 'addContact' }));
+      dispatch(closeModal({ contactId: null, modalType: 'menuUser' }));
     }
   };
 
@@ -50,7 +52,7 @@ function ContactsPage() {
   return (
     <div className={s.container}>
       
-      <button className={s.btn} onClick={() =>  setIsAddContactOpen(prevState => !prevState)}>
+      <button className={s.btn} onClick={() =>   dispatch(toggleModal({ contactId: null, modalType: 'addContact' }))}>
         {isOpenAddContact ? 'Close add bar' : 'Add contact'}
       </button>
       

@@ -9,7 +9,7 @@ import SendMessageForm from "../SendMessageForm/SendMessageForm";
 import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
 import { MESSAGES } from "../../constants/toastMessages";
 import { showToastError, showToastSuccess } from "../../utils/showToast";
-import { selectSendMessage, selectUpdateContact } from "../../redux/modal/selectors";  // Імпортуємо селектори
+import { selectSendMessage, selectUpdateContact } from "../../redux/modal/selectors";
 import { closeModal, openModal } from "../../redux/modal/slice";
 import { useEffect, useRef } from "react";
 import s from './Contact.module.css'
@@ -60,7 +60,9 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
     if (isOpenUpdateContact) {
       dispatch(closeModal({ contactId: id, modalType: 'updateContact' }));
     } else {
-      dispatch(openModal({ contactId: id, modalType: 'updateContact' }));      
+      dispatch(openModal({ contactId: id, modalType: 'updateContact' }));
+      dispatch(closeModal({ contactId: null, modalType: 'addContact' }));
+      dispatch(closeModal({ contactId: null, modalType: 'menuUser' }));
     }
   };
 
@@ -68,7 +70,9 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
     if (isOpenSendMessage) {
       dispatch(closeModal({ contactId: id, modalType: 'sendMessage' }));
     } else {
-      dispatch(openModal({ contactId: id, modalType: 'sendMessage' }));      
+      dispatch(openModal({ contactId: id, modalType: 'sendMessage' }));
+      dispatch(closeModal({ contactId: null, modalType: 'addContact' }));
+      dispatch(closeModal({ contactId: null, modalType: 'menuUser' }));
     }
   };
 
