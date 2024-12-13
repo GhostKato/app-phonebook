@@ -3,7 +3,7 @@ import { contactsApi } from '../../config/contactsApi';
 import { MESSAGES } from '../../constants/toastMessages';
 import { showToastSuccess } from '../../utils/showToast';
 import { showToastError } from '../../utils/showToast';
-import { createFormData } from '../../utils/formDataUtils';
+import { createContactFormData } from '../../utils/formDataUtils';
 
 
 export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_, thunkAPI) => {
@@ -19,7 +19,7 @@ export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_
 
 export const addContacts = createAsyncThunk('contacts/addContact', async (body, thunkAPI) => {
   try {     
-    const formData = createFormData(body);    
+    const formData = createContactFormData(body);    
     const { data } = await contactsApi.post('contacts', formData, {
       headers: {         
         'Content-Type': 'multipart/form-data',
@@ -36,7 +36,7 @@ export const addContacts = createAsyncThunk('contacts/addContact', async (body, 
 
 export const updateContact = createAsyncThunk('contacts/updateContact', async ({ id, body }, thunkAPI) => {
   try {   
-    const formData = createFormData(body);
+    const formData = createContactFormData(body);
     const { data } = await contactsApi.patch(`contacts/${id}`, formData, {
       headers: {         
         'Content-Type': 'multipart/form-data',

@@ -1,11 +1,13 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { register, logIn, logOut, refreshUser, sendResetEmail, resetPassword } from "./operations";
+import { updateUser } from "../user/operations";
 
 const initialState = {
   user: {
     name: null,
     email: null,
     photo: null,
+    id: null,
   },  
   isLoggedIn: false,
   isRefreshing: false,
@@ -29,17 +31,22 @@ const authSlice = createSlice({
         state.user.name = action.payload.user.name;
         state.user.email = action.payload.user.email; 
         state.user.photo = action.payload.user.photo;
+        state.user.id = action.payload.user._id;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user.name = action.payload.user.name;
         state.user.email = action.payload.user.email; 
-        state.user.photo = action.payload.user.photo; 
+        state.user.photo = action.payload.user.photo;
+        state.user.id = action.payload.user._id;
       })
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {        
-        state.user.name = action.payload.user.name;                
+        state.user.name = action.payload.user.name;
+        state.user.email = action.payload.user.email; 
+        state.user.photo = action.payload.user.photo;
+        state.user.photo = action.payload.user._id;
         state.isRefreshing = false;
         
       })
@@ -49,7 +56,12 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;        
-        state.user = { name: null, email: null };
+        state.user = { name: null, email: null, photo: null, id: null };
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {       
+        state.user.name = action.payload.data.name;
+        state.user.email = action.payload.data.email; 
+        state.user.photo = action.payload.data.photo;         
       })
       .addCase(sendResetEmail.pending, (state) => {
         state.loading = true;
