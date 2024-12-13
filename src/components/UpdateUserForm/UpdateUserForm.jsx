@@ -9,11 +9,11 @@ import { useState, useEffect } from 'react';
 import { selectUser } from '../../redux/auth/selectors';
 import { updateUser } from '../../redux/user/operations';
 
-const UpdateUserForm = ({ contactId, onClose }) => {
+const UpdateUserForm = ({ onClose }) => {
     
     const dispatch = useDispatch();    
     const [preview, setPreview] = useState(null);    
-    const user = useSelector(selectUser);   
+  const user = useSelector(selectUser);  
   
   useEffect(() => {
     if (user?.photo) {
@@ -36,7 +36,7 @@ const UpdateUserForm = ({ contactId, onClose }) => {
       photo: values.photo,
     };
     
-    dispatch(updateUser({ id: contactId, body: newUser }));
+    dispatch(updateUser({ id: user.id, body: newUser }));
     actions.resetForm();
     if (onClose) {
       onClose();
@@ -82,7 +82,7 @@ const UpdateUserForm = ({ contactId, onClose }) => {
 
               <label className={s.label}>
                 <span className={s.span}>Password</span>
-                <Field className={s.input} name="password" type="email" />
+                <Field className={s.input} name="password" type="password" />
                 <ErrorMessage name="password" component="span" className={s.error} />
               </label>              
 
