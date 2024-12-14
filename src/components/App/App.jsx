@@ -59,7 +59,7 @@ function App() {
             </PrivateRoute>} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
             <Route path='/request-reset' element={<SendResetEmailPage />} />
-            <Route path='/confirm-google-auth' element={<GoogleAuthCallback />} />
+            <Route path='/confirm-oauth' element={<GoogleAuthCallback />} />
           <Route path='*' element={<NotFoundPage/>}/>
         </Route>
         </Routes>

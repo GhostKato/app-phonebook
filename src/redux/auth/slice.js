@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser, sendResetEmail, resetPassword } from "./operations";
+import { register, logIn, logOut, refreshUser, sendResetEmail, resetPassword, exchangeAuthCodeForToken } from "./operations";
 import { updateUser } from "../user/operations";
 
 const initialState = {
@@ -39,6 +39,11 @@ const authSlice = createSlice({
         state.user.photo = action.payload.user.photo;
         state.user.id = action.payload.user._id;
       })
+      // .addCase(exchangeAuthCodeForToken.fulfilled, (state, action) => {
+      //   state.user.name = action.payload.user.name;
+      //   state.user.email = action.payload.user.email;         
+      //   state.user.id = action.payload.user._id;
+      // })
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
@@ -46,9 +51,8 @@ const authSlice = createSlice({
         state.user.name = action.payload.user.name;
         state.user.email = action.payload.user.email; 
         state.user.photo = action.payload.user.photo;
-        state.user.photo = action.payload.user._id;
-        state.isRefreshing = false;
-        
+        state.user.id = action.payload.user._id;
+        state.isRefreshing = false;        
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
