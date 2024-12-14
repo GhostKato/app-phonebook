@@ -6,9 +6,8 @@ import { setToken } from '../../config/contactsApi';
 
 const GoogleAuthCallback = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   
-  console.log('GoogleAuthCallback');
   useEffect(() => {
     
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,18 +15,15 @@ const GoogleAuthCallback = () => {
     
     if (code) {
       
-      const decodedCode = decodeURIComponent(code);
-      console.log('Decoded code:', decodedCode); 
+      const decodedCode = decodeURIComponent(code);       
       
       exchangeAuthCodeForToken(decodedCode)
         .then(data => {
           const token = data.token;
           
-          setToken(token);
-          
-           window.open('/', '_blank');
-          
-          // navigate('/');  
+          setToken(token);         
+                    
+          navigate('/');  
         })
         .catch(error => {
           console.error('Error exchanging code for token:', error);          

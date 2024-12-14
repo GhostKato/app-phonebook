@@ -79,6 +79,8 @@
 
 .previewImage {
   width: 250px;
+  height: 250px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
@@ -113,6 +115,7 @@
 
   .previewImage {
     width: 400px;
+    height: 400px;
   }
 
   .btnFileCont {
