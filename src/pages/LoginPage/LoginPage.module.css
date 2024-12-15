@@ -50,33 +50,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 40px;
   border-radius: 10px;
+  margin-top: 15px;
   border: none;
-  background-color: var(--color-green);
   color: var(--color-white);
   transition: background-color 0.3s ease;
   box-shadow: var(--box-shadow);
   &:hover {
-    background-color: var(--color-button-hover);
     box-shadow: none;
   }
 }
 
 .btnReset {
-  margin: 0 auto;
-  margin-top: 15px;
+  background-color: var(--red-button);
+  width: 120px;
+  height: 25px;
+  &:hover {
+    background-color: var(--red-button-hover);
+  }
 }
 
 .btnLogin {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-}
-
-.text {
-  margin-top: 60px;
+  background-color: var(--color-green);
+  width: 80px;
+  height: 25px;
+  &:hover {
+    background-color: var(--color-button-hover);
+  }
 }
 
 .link {
@@ -99,23 +99,20 @@
     height: 40px;
   }
 
-  .btn {
+  .btnReset {
     width: 150px;
+    height: 40px;
   }
 
   .btnLogin {
-    top: 15px;
-    left: 15px;
+    width: 120px;
+    height: 40px;
   }
 
   .error {
-    font-size: 15px;
+    font-size: 25px;
   }
 }
 
 @media (min-width: 1280px) {
-  .btnLogin {
-    top: 15px;
-    left: 15px;
-  }
 }

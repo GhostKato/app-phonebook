@@ -39,8 +39,8 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 80px;
-  height: 40px;
+  width: 60px;
+  height: 25px;
   border-radius: 10px;
   border: none;
   margin-top: 15px;
@@ -71,5 +71,6 @@
 
   .btn {
     width: 150px;
+    height: 40px;
   }
 }

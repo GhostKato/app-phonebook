@@ -1,5 +1,6 @@
 import { getGoogleAuthUrl } from '../../redux/auth/operations';
 import s from './GoogleLoginButton.module.css'
+import { FcGoogle } from "react-icons/fc";
 
 const GoogleLoginButton = () => {
 
@@ -15,7 +16,7 @@ const GoogleLoginButton = () => {
 
   return (
       <button className={s.googleBtn} onClick={handleGoogleLogin}>
-      With Google
+      <FcGoogle className={s.googleIcon}/>
     </button>
   );
 };
