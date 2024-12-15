@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { sendResetEmail } from '../../redux/auth/operations';
-import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
+import { selectIsLoading } from '../../redux/auth/selectors';
 import s from './SendResetEmailPage.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import sendResetEmailSchema from '../../validation/sendResetEmailSchema';
@@ -9,10 +9,8 @@ import sendResetEmailSchema from '../../validation/sendResetEmailSchema';
 const SendResetEmailPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const message = useSelector(selectMessage);
-  const error = useSelector(selectError);
-  const loading = useSelector(selectLoading);  
+  
+  const loading = useSelector(selectIsLoading);  
 
    const handleSubmit = async (values, { setSubmitting }) => {
     const result = await dispatch(sendResetEmail(values.email));
@@ -43,14 +41,12 @@ const SendResetEmailPage = () => {
               <ErrorMessage name="email" component="div" className={s.error} />
             </label>
             <button className={s.btn} type="submit" disabled={isSubmitting || loading}>
-              {loading ? 'Sending...' : 'Send'}
+              Send
             </button>
             <p>Go to <Link className={s.link} to='/'>Home</Link></p>
           </Form>
         )}
-      </Formik>
-      {message && <p className={s.message}>{message}</p>}
-      {error && <p className={s.error}>{error}</p>}
+      </Formik>      
     </div>
   );
 };
