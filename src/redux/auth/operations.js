@@ -107,28 +107,27 @@ export const getGoogleAuthUrl = async () => {
     const res = await contactsApi.get('/auth/get-oauth-url');    
     if (res.status !== 200) {
       throw new Error('Unable to get authorization URL');
-    }    
+    }  
     return res.data.data.url;  
-  } catch (error) {
-    console.error('Error getting Google Auth URL:', error);
-    throw error;  
+  } catch (error) {   
+    throw new Error(`Error getting Google Auth URL: ${error.message}`); 
   }
 };
 
 
-export const exchangeAuthCodeForToken = async (code) => {  
-  try {    
-    const res = await contactsApi.post('/auth/confirm-oauth', {
-      code,  
-    });   
+export const exchangeAuthCodeForToken = createAsyncThunk(
+  'auth/exchangeAuthCodeForToken', 
+  async (code, { rejectWithValue }) => {
+    try {
+      const res = await contactsApi.post('/auth/confirm-oauth', { code });
       if (res.status !== 200) {
-      throw new Error('Error exchanging code for token');
-    }     
-    setToken(res.data.data.accessToken); 
-    console.log(res.data.data.accessToken);
-    return res.data.data;
-  } catch (error) {
-    console.error('Error exchanging code for token:', error);
-    throw new Error('Error sending code to server');
+        throw new Error('Error exchanging code for token');
+      }           
+      setToken(res.data.data.accessToken);      
+      return res.data.data; 
+    } catch (error) {      
+      return rejectWithValue('Error sending code to server');
+    }
   }
-};
+);
+

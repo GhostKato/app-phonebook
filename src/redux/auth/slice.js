@@ -39,11 +39,12 @@ const authSlice = createSlice({
         state.user.photo = action.payload.user.photo;
         state.user.id = action.payload.user._id;
       })
-      // .addCase(exchangeAuthCodeForToken.fulfilled, (state, action) => {
-      //   state.user.name = action.payload.user.name;
-      //   state.user.email = action.payload.user.email;         
-      //   state.user.id = action.payload.user._id;
-      // })
+      .addCase(exchangeAuthCodeForToken.fulfilled, (state, action) => {
+        state.user.name = action.payload.user.name;
+        state.user.email = action.payload.user.email;
+        state.user.photo = action.payload.user.photo;
+        state.user.id = action.payload.user._id;
+      })
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
@@ -91,7 +92,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addMatcher(isAnyOf(register.fulfilled, logIn.fulfilled, refreshUser.fulfilled), state => {
+      .addMatcher(isAnyOf(register.fulfilled, logIn.fulfilled, refreshUser.fulfilled, exchangeAuthCodeForToken.fulfilled), state => {
       state.isLoggedIn = true;      
     })
   },
