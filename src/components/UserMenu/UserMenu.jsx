@@ -20,14 +20,14 @@ const UserMenu = () => {
         dispatch(closeModal({ contactId: null, modalType: 'menuUser' }));    
     };
     
-    useEffect(() => {
+  //   useEffect(() => {
     
-    if (isOpenMenuUser) {
-      setTimeout(() => {
-        dispatch(closeModal({ contactId: null, modalType: 'menuUser' }));
-      }, 3000);
-    }
-  }, [isOpenMenuUser, dispatch]);
+  //   if (isOpenMenuUser) {
+  //     setTimeout(() => {
+  //       dispatch(closeModal({ contactId: null, modalType: 'menuUser' }));
+  //     }, 3000);
+  //   }
+  // }, [isOpenMenuUser, dispatch]);
     
     return (
        
