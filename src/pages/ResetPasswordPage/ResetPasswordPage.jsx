@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { resetPassword } from '../../redux/auth/operations';
-import { selectMessage, selectError, selectLoading } from '../../redux/auth/selectors';
+import { selectIsLoading } from '../../redux/auth/selectors';
 import s from './ResetPasswordPage.module.css';
 import resetPasswordSchema from '../../validation/resetPasswordSchema';
 
@@ -10,9 +10,8 @@ const ResetPasswordPage = () => {
   const location = useLocation();
    const navigate = useNavigate();
   const dispatch = useDispatch();
-  const message = useSelector(selectMessage);
-  const error = useSelector(selectError);
-  const loading = useSelector(selectLoading);
+  
+  const loading = useSelector(selectIsLoading);
 
   const token = new URLSearchParams(location.search).get('token');  
 
@@ -50,17 +49,15 @@ const ResetPasswordPage = () => {
                 <ErrorMessage name="newPassword" component="div" className={s.error} />
               </label>
               <button className={s.btn} type="submit" disabled={isSubmitting || loading}>
-                {loading ? 'Processing...' : 'Send'}
+                Send
               </button>
             </Form>
           )}
         </Formik>
       ) : (
         <p className={s.message}>Token not given.</p>
-      )}
-      {message && <p className={s.message}>{message}</p>}
-      {error && <p className={s.error}>{error}</p>}
-    </div>
+      )}    
+      </div>
   );
 };
 

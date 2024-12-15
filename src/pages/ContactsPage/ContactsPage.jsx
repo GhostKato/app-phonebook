@@ -9,7 +9,7 @@ import ContactList from '../../components/ContactList/ContactList';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 import ContactsLoader from '../../components/Loaders/ContactsLoader/ContactsLoader';
 import { selectAddContact } from '../../redux/modal/selectors';
-import { closeModal, openModal, toggleModal } from '../../redux/modal/slice';
+import { closeModal, openModal } from '../../redux/modal/slice';
 
 function ContactsPage() {  
 

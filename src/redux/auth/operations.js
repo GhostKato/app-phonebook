@@ -122,10 +122,12 @@ export const exchangeAuthCodeForToken = createAsyncThunk(
       const res = await contactsApi.post('/auth/confirm-oauth', { code });
       if (res.status !== 200) {
         throw new Error('Error exchanging code for token');
-      }           
+      } 
+      showToastSuccess(MESSAGES.LOGIN.SUCCESS); 
       setToken(res.data.data.accessToken);      
       return res.data.data; 
-    } catch (error) {      
+    } catch (error) {
+      showToastError(MESSAGES.LOGIN.ERROR);
       return rejectWithValue('Error sending code to server');
     }
   }
