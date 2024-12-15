@@ -15,7 +15,7 @@
   transform: translate(-50%, -50%);
   width: 325px;
   background-color: var(--color-one);
-  padding: 20px;
+  padding: 15px;
   overflow-y: auto;
   box-shadow: 0 4px 6px rgb(0, 0, 0);
   border-radius: 10px;
@@ -63,8 +63,8 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 100px;
-  height: 40px;
+  width: 80px;
+  height: 25px;
   border-radius: 10px;
   border: none;
   margin-top: 15px;
@@ -85,33 +85,14 @@
   border: none;
   background-color: transparent;
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 10px;
+  right: 8px;
   z-index: 1000;
 }
 
 .iconClose {
   color: var(--red-button);
   font-size: 25px;
-  &:hover {
-    color: var(--red-button-hover);
-  }
-}
-
-.btnDelete {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  bottom: 42px;
-  left: 30px;
-}
-
-.iconDelete {
-  color: var(--red-button);
-  font-size: 30px;
   &:hover {
     color: var(--red-button-hover);
   }
@@ -130,6 +111,7 @@
 
   .btn {
     width: 150px;
+    height: 40px;
   }
 
   .title {

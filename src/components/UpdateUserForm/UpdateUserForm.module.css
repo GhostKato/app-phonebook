@@ -15,7 +15,7 @@
   transform: translate(-50%, -50%);
   width: 325px;
   background-color: var(--color-one);
-  padding: 20px;
+  padding: 10px;
   overflow-y: auto;
   box-shadow: 0 4px 6px rgb(0, 0, 0);
   border-radius: 10px;
@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
   background-color: var(--color-one);
   box-shadow: inset var(--box-shadow);
@@ -41,7 +41,7 @@
 }
 
 .input {
-  height: 40px;
+  height: 30px;
   width: 250px;
   border-radius: 5px;
   padding-left: 10px;
@@ -62,11 +62,11 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 100px;
-  height: 40px;
+  width: 80px;
+  height: 25px;
   border-radius: 10px;
   border: none;
-  margin-top: 15px;
+  margin-top: 10px;
   background-color: var(--color-green);
   color: var(--color-white);
   transition: background-color 0.3s ease;
@@ -84,8 +84,8 @@
   border: none;
   background-color: transparent;
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 8px;
+  right: 3px;
   z-index: 1000;
 }
 
@@ -99,7 +99,7 @@
 
 .error {
   color: red;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .title {
@@ -140,12 +140,22 @@
 }
 
 @media (min-width: 768px) {
+  .modal {
+    padding: 15px;
+  }
+
+  .form {
+    padding: 15px;
+  }
+
   .input {
     width: 400px;
+    height: 40px;
   }
 
   .btn {
     width: 150px;
+    height: 40px;
   }
 
   .title {
@@ -175,6 +185,10 @@
 
   .btnFileIcon {
     font-size: 60px;
+  }
+
+  .error {
+    font-size: 25px;
   }
 }
 

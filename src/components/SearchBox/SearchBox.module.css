@@ -13,7 +13,7 @@
 }
 
 .input {
-  height: 40px;
+  height: 30px;
   border-radius: 8px;
   padding-left: 10px;
   border: none;
@@ -24,5 +24,11 @@
   &:focus,
   &:hover {
     outline: 2px solid var(--color-button-hover);
+  }
+}
+
+@media (min-width: 768px) {
+  .input {
+    height: 40px;
   }
 }
