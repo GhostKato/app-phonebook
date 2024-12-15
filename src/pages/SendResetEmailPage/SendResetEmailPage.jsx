@@ -5,6 +5,7 @@ import { selectIsLoading } from '../../redux/auth/selectors';
 import s from './SendResetEmailPage.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import sendResetEmailSchema from '../../validation/sendResetEmailSchema';
+import AuthLoader from '../../components/Loaders/AuthLoader/AuthLoader';
 
 const SendResetEmailPage = () => {
   const navigate = useNavigate();
@@ -46,7 +47,8 @@ const SendResetEmailPage = () => {
             <p>Go to <Link className={s.link} to='/'>Home</Link></p>
           </Form>
         )}
-      </Formik>      
+      </Formik>
+      <AuthLoader/>
     </div>
   );
 };

@@ -51,41 +51,47 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.isLoggedIn = false;
         state.user = { name: null, email: null, photo: null, id: null };
-      })
-      
-      .addCase(sendResetEmail.pending, (state) => {
+      })   
+        .addMatcher(isAnyOf(
+        register.pending,
+        logIn.pending,
+        refreshUser.pending,
+        exchangeAuthCodeForToken.pending,
+        resetPassword.pending,
+        sendResetEmail.pending
+      ), (state) => {        
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(sendResetEmail.fulfilled, (state) => {
-        state.isLoading = false;
-        state.isError = false;
-      })
-      .addCase(sendResetEmail.rejected, (state) => {
-        state.isLoading = false;
-        state.isError = true;
-      })      
-      
-      .addCase(resetPassword.pending, (state) => {
-        state.isLoading = true;
-        state.isError = false;
-      })
-      .addCase(resetPassword.fulfilled, (state) => {
-        state.isLoading = false;
-        state.isError = false;
-      })
-      .addCase(resetPassword.rejected, (state) => {
-        state.isLoading = false;
-        state.isError = true;
-      })
-      
       .addMatcher(isAnyOf(
+        register.rejected,
+        logIn.rejected,
+        refreshUser.rejected,
+        exchangeAuthCodeForToken.rejected,
+        resetPassword.rejected,
+        sendResetEmail.rejected
+      ), (state) => {        
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addMatcher(isAnyOf(
+        register.fulfilled,
+        logIn.fulfilled,
+        refreshUser.fulfilled,
+        exchangeAuthCodeForToken.fulfilled,
+        resetPassword.fulfilled,
+        sendResetEmail.fulfilled
+      ), (state) => {        
+        state.isLoading = false;
+        state.isError = false;
+      })
+    .addMatcher(isAnyOf(
         register.fulfilled,
         logIn.fulfilled,
         refreshUser.fulfilled,
         exchangeAuthCodeForToken.fulfilled
       ), (state) => {
-        state.isLoggedIn = true;
+        state.isLoggedIn = true;        
       });
   },
 });

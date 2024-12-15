@@ -5,6 +5,7 @@ import { resetPassword } from '../../redux/auth/operations';
 import { selectIsLoading } from '../../redux/auth/selectors';
 import s from './ResetPasswordPage.module.css';
 import resetPasswordSchema from '../../validation/resetPasswordSchema';
+import AuthLoader from '../../components/Loaders/AuthLoader/AuthLoader';
 
 const ResetPasswordPage = () => {
   const location = useLocation();
@@ -56,7 +57,8 @@ const ResetPasswordPage = () => {
         </Formik>
       ) : (
         <p className={s.message}>Token not given.</p>
-      )}    
+      )} 
+      <AuthLoader/>
       </div>
   );
 };

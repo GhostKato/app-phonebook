@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'; 
 import { exchangeAuthCodeForToken } from '../../redux/auth/operations'; 
+import AuthLoader from '../Loaders/AuthLoader/AuthLoader';
 
 const GoogleAuthCallback = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const GoogleAuthCallback = () => {
 
   return (
     <div>
-      <h2>Завершення авторизації...</h2> 
+      <AuthLoader/> 
     </div>
   );
 };
