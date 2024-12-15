@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/operations'
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import registrationUserSchema from '../../validation/registrationUserSchema';
+import AuthLoader from '../../components/Loaders/AuthLoader/AuthLoader';
 
 const RegistrationPage = () => {
 
@@ -48,6 +49,7 @@ const RegistrationPage = () => {
           <p>You already have account? <Link className={s.link} to='/login'>Sing in</Link></p>
         </Form>
       </Formik>
+      <AuthLoader/>
     </div>
   )
 }

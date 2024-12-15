@@ -6,6 +6,7 @@ import { logIn } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import loginUserSchema from '../../validation/loginUserSchema';
 import GoogleLoginButton from '../../components/GoogleLoginButton/GoogleLoginButton';
+import AuthLoader from '../../components/Loaders/AuthLoader/AuthLoader';
 
 const LoginPage = () => {
 
@@ -55,6 +56,7 @@ const LoginPage = () => {
         <GoogleLoginButton />
       </div>
       <button className={`${s.btn} ${s.btnReset}`} onClick={handleResetPassword}>Reset password</button>
+      <AuthLoader/>
     </div>
   )
 }
