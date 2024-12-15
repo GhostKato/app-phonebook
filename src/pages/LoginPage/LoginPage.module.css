@@ -30,7 +30,7 @@
 }
 
 .input {
-  height: 40px;
+  height: 30px;
   width: 250px;
   border-radius: 5px;
   padding-left: 10px;
@@ -88,9 +88,15 @@
   }
 }
 
+.error {
+  font-size: 15px;
+  color: red;
+}
+
 @media (min-width: 768px) {
   .input {
     width: 400px;
+    height: 40px;
   }
 
   .btn {
@@ -100,6 +106,10 @@
   .btnLogin {
     top: 15px;
     left: 15px;
+  }
+
+  .error {
+    font-size: 15px;
   }
 }
 
