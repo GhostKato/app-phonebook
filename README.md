@@ -94,36 +94,30 @@ The app phonebook is a digital tool for storing contact information, allowing yo
 ### Technologies used:
 
 1. **Programming languages:**
-
    - **JavaScript**
 
 2. **Frameworks and Libraries:**
    - **React**
-   - **React Router**
-   - **Node.js**
+   - **React Router**  
    - **Redux**
+   - 
 3. **Databases:**
-
    - **MongoDB**
 
 4. **API Integration:**
-
    - **SMTP**
 
 5. **Safety:**
-
    - **OAuth 2.0**
    - **JWT**
    - **HTTPS**
      **bcrypt**
 
 6. **Other technologies:**
-
    - **Git**
    - **Cloudinary**
 
 7. **Adaptability:**
-
    - **CSS Media Queries**
    - **Flexbox**
 
