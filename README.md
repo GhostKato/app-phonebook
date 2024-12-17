@@ -122,3 +122,5 @@ The app phonebook is a digital tool for storing contact information, allowing yo
    - **Flexbox**
 
 ---
+
+The project involves the creation of a convenient and secure tool for storing contacts with the ability to add photos, edit and quickly access your favorite contacts. The application provides high security through encryption and authorization through Google, as well as adaptive design for various devices. The project includes the stages of developing the interface, functionality, testing and support.
