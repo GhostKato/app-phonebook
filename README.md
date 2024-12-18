@@ -17,32 +17,32 @@ The app phonebook is a digital tool for storing contact information, allowing yo
    - Ability to add new contacts with a minimum number of steps.
    - Display detailed information about each contact (name, phone number, email, photo).
 
-   ![Application interface](./src/img/readme/header.png)
+   ![header](./src/img/readme/header.png)
 
 2. **Contact Categories:**
 
    - Ability to add contacts to your favorite list, for quick access.
 
-   ![Contact Categories](./src/img/readme/favourite.png)
+   ![favourite](./src/img/readme/favourite.png)
 
 3. **Add photos:**
 
    - Each contact can be accompanied by a photo, which facilitates search and recognition.
 
-   ![Add a photo](./src/img/readme/add-contact.png)
+   ![add-contact](./src/img/readme/add-contact.png)
 
 4. **Editing and deleting:**
 
    - Easily edit or delete contact information as needed.
 
-   ![Edit contacts](./src/img/readme/update-contact.png)
+   ![update-contact](./src/img/readme/update-contact.png)
 
 5. **Safety:**
 
    - Protection of personal data through encryption and access to the application by password.
    - The ability to change user data through a special form that allows you to edit the name, email and photo.
 
-   ![Safety](./src/img/readme/security.png)
+   ![security](./src/img/readme/security.png)
 
 6. **Adaptive design:**
 
@@ -60,25 +60,25 @@ The app phonebook is a digital tool for storing contact information, allowing yo
 
    - Developing interface layouts, choosing colors and fonts, creating a convenient menu and navigation.
 
-   ![Interface design](./src/img/readme/design.png)
+   ![design](./src/img/readme/design.png)
 
 2. **Development of functionality:**
 
    - Implement basic features such as adding, editing and deleting contacts, searching, and making calls and sending messages to mail.
 
-   ![Development of functionality](./src/img/readme/send-message.png)
+   ![send-message](./src/img/readme/send-message.png)
 
 3. **Testing:**
 
    - Conducting tests to ensure stable operation of the application on different devices.
 
-   ![Testing](./src/img/readme/register.png)
+   ![register](./src/img/readme/register.png)
 
 4. **Launch and support:**
 
    - Publish the application and then update to improve functionality based on user feedback.
 
-   ![Launch and support](./src/img/readme/reset-password.png)
+   ![reset-password](./src/img/readme/reset-password.png)
 
 ---
 
