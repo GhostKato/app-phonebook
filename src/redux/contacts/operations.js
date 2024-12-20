@@ -81,8 +81,13 @@ export const updateFavourite = createAsyncThunk('contacts/updateFavourite', asyn
     const { data } = await contactsApi.patch(`contacts/${id}`, formData, {
       headers: {         
         'Content-Type': 'multipart/form-data',
-      },
-    });        
+      },      
+    });  
+    if (data.data.contact.isFavourite) {
+      showToastSuccess(MESSAGES.CHANGE_FAVOURITE.ADD_SUCCESS);
+    } else {
+      showToastError(MESSAGES.CHANGE_FAVOURITE.REMOVE_SUCCESS);
+    }
     return data;
   } catch (error) {    
     return thunkAPI.rejectWithValue(error.message);
