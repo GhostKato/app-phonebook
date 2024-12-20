@@ -7,11 +7,9 @@ import useResponsiveEmail from '../../hooks/useResponsiveEmail';
 import sendAction from "../../utils/sendAction";
 import SendMessageForm from "../SendMessageForm/SendMessageForm";
 import UpdateContactForm from '../UpdateContactForm/UpdateContactForm';
-import { MESSAGES } from "../../constants/toastMessages";
-import { showToastError, showToastSuccess } from "../../utils/showToast";
 import { selectSendMessage, selectUpdateContact } from "../../redux/modal/selectors";
 import { closeModal, openModal } from "../../redux/modal/slice";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import s from './Contact.module.css'
 
 const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
@@ -25,22 +23,7 @@ const Contact = ({ id, name, number, email, type, photo, isFavourite }) => {
       if (isOpenUpdateContact) dispatch(closeModal({ contactId: id, modalType: 'updateContact' }));
       if (isOpenSendMessage) dispatch(closeModal({ contactId: id, modalType: 'sendMessage' }));
     }
-  };
-
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    
-    if (isFavourite) {
-      showToastSuccess(MESSAGES.CHANGE_FAVOURITE.ADD_SUCCESS);
-    } else {
-      showToastError(MESSAGES.CHANGE_FAVOURITE.REMOVE_SUCCESS);
-    }
-  }, [isFavourite]);
+  }; 
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
