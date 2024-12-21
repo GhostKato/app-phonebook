@@ -6,6 +6,7 @@ import { register } from '../../redux/auth/operations'
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import registrationUserSchema from '../../validation/registrationUserSchema';
 import AuthLoader from '../../components/Loaders/AuthLoader/AuthLoader';
+import GoogleButton from '../../components/GoogleButton/GoogleButton';
 
 const RegistrationPage = () => {
 
@@ -49,6 +50,9 @@ const RegistrationPage = () => {
           <p>You already have account? <Link className={s.link} to='/login'>Sing in</Link></p>
         </Form>
       </Formik>
+      <div className={s.containerBtn}>
+        <GoogleButton position='googleRegistration' />
+      </div>
       <AuthLoader/>
     </div>
   )
