@@ -15,7 +15,7 @@
 
 .googleRegistration {
   bottom: 37px;
-  left: 27px;
+  right: 90px;
 }
 
 .googleIcon {
@@ -29,8 +29,8 @@
   }
 
   .googleRegistration {
-    bottom: 42px;
-    left: 127px;
+    bottom: 40px;
+    right: 152px;
   }
 
   .googleIcon {
@@ -45,6 +45,6 @@
 
   .googleRegistration {
     bottom: 47px;
-    left: 223px;
+    right: 152px;
   }
 }
