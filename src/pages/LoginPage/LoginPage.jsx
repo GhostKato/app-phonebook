@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import loginUserSchema from '../../validation/loginUserSchema';
-import GoogleLoginButton from '../../components/GoogleLoginButton/GoogleLoginButton';
+import GoogleButton from '../../components/GoogleButton/GoogleButton';
 import AuthLoader from '../../components/Loaders/AuthLoader/AuthLoader';
 
 const LoginPage = () => {
@@ -53,7 +53,7 @@ const LoginPage = () => {
         </Form>
       </Formik>
       <div className={s.containerBtn}>
-        <GoogleLoginButton />
+        <GoogleButton position='googleLogin' />
       </div>
       <button className={`${s.btn} ${s.btnReset}`} onClick={handleResetPassword}>Reset password</button>
       <AuthLoader/>

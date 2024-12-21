@@ -1,0 +1,50 @@
+.googleBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+}
+
+.googleLogin {
+  bottom: 38px;
+  right: 90px;
+}
+
+.googleRegistration {
+  bottom: 37px;
+  left: 27px;
+}
+
+.googleIcon {
+  font-size: 28px;
+}
+
+@media (min-width: 768px) {
+  .googleLogin {
+    bottom: 40px;
+    right: 145px;
+  }
+
+  .googleRegistration {
+    bottom: 42px;
+    left: 127px;
+  }
+
+  .googleIcon {
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .googleLogin {
+    bottom: 47px;
+  }
+
+  .googleRegistration {
+    bottom: 47px;
+    left: 223px;
+  }
+}

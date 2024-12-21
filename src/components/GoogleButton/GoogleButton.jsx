@@ -1,13 +1,12 @@
 import { getGoogleAuthUrl } from '../../redux/auth/operations';
-import s from './GoogleLoginButton.module.css'
+import s from './GoogleButton.module.css'
 import { FcGoogle } from "react-icons/fc";
 
-const GoogleLoginButton = () => {
+const GoogleButton = ({position}) => {
 
-  const handleGoogleLogin = async () => {
+  const handleGoogle = async () => {
     try {
-      const url = await getGoogleAuthUrl();           
-      
+      const url = await getGoogleAuthUrl();          
       window.location.href = url;
     } catch (error) {
       console.error('Authorization initialization failed', error);
@@ -15,10 +14,10 @@ const GoogleLoginButton = () => {
   };
 
   return (
-      <button className={s.googleBtn} onClick={handleGoogleLogin}>
+    <button className={`${s.googleBtn} ${s[position]}`} onClick={handleGoogle}>
       <FcGoogle className={s.googleIcon}/>
     </button>
   );
 };
 
-export default GoogleLoginButton;
+export default GoogleButton;
