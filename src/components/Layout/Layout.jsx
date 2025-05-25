@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 
 const Layout = () => {
   return (
-    <div className={s.container}>
+    <div className={s.layout}>
       <AppBar />
       <Outlet className={s.main}/>
       <Footer/>
