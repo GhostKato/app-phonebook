@@ -7,7 +7,9 @@ const Layout = () => {
   return (
     <div className={s.layout}>
       <AppBar />
-      <Outlet className={s.main}/>
+      <div className={s.main}>
+        <Outlet />
+      </div>
       <Footer/>
     </div>
   )
