@@ -5,9 +5,9 @@ import Footer from '../Footer/Footer'
 
 const Layout = () => {
   return (
-    <div>
+    <div className={s.container}>
       <AppBar />
-      <Outlet />
+      <Outlet className={s.main}/>
       <Footer/>
     </div>
   )
