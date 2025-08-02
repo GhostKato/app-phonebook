@@ -3,7 +3,7 @@ export const MESSAGES = {
     ERROR: "Email is already in use. Try another mail!",
   },
   LOGIN: {
-    SUCCESS: "Welcome to TaskPro! 🚀",
+    SUCCESS: "Welcome to App-Phonebook! 🚀",
     ERROR: "Incorrect email or password. Please try again.",
   },
   SEND_RESET_EMAIL: {
