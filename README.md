@@ -1,8 +1,8 @@
-# Individual project: app phonebook
+# Individual project: phonebook
 
 ### Description:
 
-The app phonebook is a digital tool for storing contact information, allowing you to organize phone numbers, email addresses and other important data about contacts. This project aims to create a convenient, intuitive application for quick access to information about important people in your life or business.
+The a phonebook is a digital tool for storing contact information, allowing you to organize phone numbers, email addresses and other important data about contacts. This project aims to create a convenient, intuitive application for quick access to information about important people in your life or business.
 
 ![Phonebook](./src/img/readme/home.png)
 
